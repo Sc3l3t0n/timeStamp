@@ -4,23 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba61e697-fab8-41a2-9538-270e0983d544" name="Changes" comment="Initial Commit">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/API/DataCollector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/API/DataRemover.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/API/DataWriter.java" afterDir="false" />
+    <list default="true" id="ba61e697-fab8-41a2-9538-270e0983d544" name="Changes" comment="Feat: Added update functions to DataWriter">
       <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/console/cli.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/GlobalVariables.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Project.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Tag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/TimeInterval.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/database.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +44,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/marlo/Documents/Programmieren/Java/timeStemp/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -86,7 +74,8 @@
       <updated>1690467870250</updated>
       <workItem from="1690467871568" duration="4906000" />
       <workItem from="1690477005745" duration="3136000" />
-      <workItem from="1690480163125" duration="4859000" />
+      <workItem from="1690480163125" duration="5245000" />
+      <workItem from="1690485698851" duration="4701000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -96,7 +85,39 @@
       <option name="project" value="LOCAL" />
       <updated>1690468253978</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Data Types">
+      <option name="closed" value="true" />
+      <created>1690485305019</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1690485305019</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Removed wrong README.md">
+      <option name="closed" value="true" />
+      <created>1690485335623</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1690485335623</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Feat: First iteration of data-bank connectivity">
+      <option name="closed" value="true" />
+      <created>1690485400380</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1690485400380</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Feat: Added update functions to DataWriter">
+      <option name="closed" value="true" />
+      <created>1690491690499</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1690491690499</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +136,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Added Data Types" />
+    <MESSAGE value="Removed wrong README.md" />
+    <MESSAGE value="Feat: First iteration of data-bank connectivity" />
+    <MESSAGE value="Feat: Added update functions to DataWriter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: Added update functions to DataWriter" />
   </component>
 </project>
