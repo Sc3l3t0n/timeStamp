@@ -27,7 +27,7 @@ public class DataWriter {
             System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException("DataWrite could not connect to the database.");
+            throw new RuntimeException("DataWrite could not connect to the database!");
         }
 
         this.connection = connection;
@@ -40,6 +40,8 @@ public class DataWriter {
             throw new RuntimeException(e);
         }
     }
+
+    // Task
 
     public void writeTask(Task task) {
 
@@ -54,18 +56,52 @@ public class DataWriter {
 
             if (task.getProject() != null)
                 preparedStatement.setInt(3, task.getProject().getProjectID());
+            else
+                preparedStatement.setInt(3, -1);
+
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Task added!");
             } else {
-                System.out.println("Error adding the task");
+                System.out.println("Error adding the task!");
             }
 
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
         }
     }
+
+    public void updateTask(Task task) {
+
+        // SQL INSERT statement
+        String sql = "UPDATE tasks SET name = ?, project_id = ? WHERE task_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, task.getName());
+            if (task.getProject() != null)
+                preparedStatement.setInt(2, task.getProject().getProjectID());
+            else
+                preparedStatement.setInt(2, -1);
+
+            preparedStatement.setInt(3, task.getTaskID());
+
+            // check if something was changed
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Task updated!");
+            } else {
+                System.out.println("Nothing from the task was updated!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error when connecting to the database!");
+        }
+    }
+
+    // Project
 
     public void writeProject(Project project) {
 
@@ -80,26 +116,57 @@ public class DataWriter {
             preparedStatement.setString(3, project.getDescription());
             if (project.getParent() != null)
                 preparedStatement.setInt(4, project.getParent().getProjectID());
+            else
+                preparedStatement.setInt(4, -1);
+
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("Project added!");
             } else {
-                System.out.println("Error adding the project");
+                System.out.println("Error adding the project!");
             }
 
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
         }
-
     }
 
     public void updateProject(Project project) {
 
+        // SQL INSERT statement
+        String sql = "UPDATE projects SET name = ?, description = ?, parent_id = ? WHERE project_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+
+            preparedStatement.setString(1, project.getName());
+            preparedStatement.setString(2, project.getDescription());
+            if (project.getParent() != null)
+                preparedStatement.setInt(3, project.getParent().getProjectID());
+            else
+                preparedStatement.setInt(3, -1);
+
+
+            preparedStatement.setInt(4, project.getProjectID());
+
+            // check if something was changed
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Project updated!");
+            } else {
+                System.out.println("Nothing from the project was updated!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error when connecting to the database!");
+        }
     }
 
     public void writeTag(Tag tag) {
 
+        // SQL INSERT statement
         String sql = "INSERT INTO tags(tag_id, name, parent_id, color) VALUES(?,?,?,?)";
 
         try {
@@ -109,6 +176,10 @@ public class DataWriter {
             preparedStatement.setString(2, tag.getName());
             if (tag.getParent() != null)
                 preparedStatement.setInt(3, tag.getParent().getTagID());
+            else
+                preparedStatement.setInt(3, -1);
+
+
             preparedStatement.setString(4, tag.getColor().toString());
 
             int rowsInserted = preparedStatement.executeUpdate();
@@ -125,9 +196,44 @@ public class DataWriter {
 
     }
 
-    public void writeTimeIntervals(TimeInterval timeInterval) {
+    public void updateTag(Tag tag) {
+
         // SQL INSERT statement
-        String sql = "INSERT INTO projects(interval_id, taks_id, start_time, end_time) VALUES(?,?,?,?)";
+        String sql = "UPDATE tags SET name = ?, parent_id = ?, color = ? WHERE tag_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, tag.getName());
+            // check if tag has a parent
+            if (tag.getParent() != null)
+                preparedStatement.setInt(2, tag.getParent().getTagID());
+            else
+                preparedStatement.setInt(2, -1);
+
+            preparedStatement.setString(3, tag.getColor().toString());
+
+            preparedStatement.setInt(4, tag.getTagID());
+
+            // check if something was changed
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Tag updated!");
+            } else {
+                System.out.println("Nothing from the tag was updated!");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error when connecting to the database!");
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void writeTimeIntervals(TimeInterval timeInterval) {
+
+        // SQL INSERT statement
+        String sql = "INSERT INTO timeintervals(interval_id, task_id, start_time, end_time) VALUES(?,?,?,?)";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -142,6 +248,32 @@ public class DataWriter {
                 System.out.println("Interval added!");
             } else {
                 System.out.println("Error adding the interval");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error when connecting to the database!");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateTimeIntervals(TimeInterval timeInterval) {
+
+        // SQL INSERT statement
+        String sql = "UPDATE timeintervals SET task_id =?, start_time = ?, end_time = ? WHERE interval_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, timeInterval.getTask().getTaskID());
+            preparedStatement.setString(2, timeInterval.getStartTime().toString());
+            preparedStatement.setString(3, timeInterval.getEndTime().toString());
+            preparedStatement.setInt(4, timeInterval.getIntervalID());
+
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Interval updated!");
+            } else {
+                System.out.println("Nothing from the interval was updated!");
             }
 
         } catch (SQLException e) {
