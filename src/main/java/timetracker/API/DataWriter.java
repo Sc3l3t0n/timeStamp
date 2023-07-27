@@ -10,15 +10,11 @@ import timetracker.data.Tag;
 import timetracker.data.Task;
 import timetracker.data.TimeInterval;
 
-
-//TODO: Update Methoden hinzufügen
 public class DataWriter {
 
     final private Connection connection;
 
     public DataWriter() {
-        Connection connection = null;
-
         try{
 
             Class.forName("org.sqlite.JDBC");
@@ -29,8 +25,6 @@ public class DataWriter {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException("DataWrite could not connect to the database!");
         }
-
-        this.connection = connection;
     }
 
     public void close(){
