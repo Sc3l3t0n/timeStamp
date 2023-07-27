@@ -7,10 +7,26 @@ import java.sql.SQLException;
 
 import timetracker.data.*;
 
+/**
+ * This class is used to write data to the database.
+ *
+ * @author Marlon Rosenberg
+ * @version 0.2
+ */
 public class DataWriter {
 
+    /**
+     * The connection to the database.
+     */
     final private Connection connection;
 
+    /**
+     * Constructor for the DataWriter class.
+     * Connects to the database.
+     *
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
     public DataWriter() {
         try{
             Class.forName("org.sqlite.JDBC");
@@ -23,6 +39,12 @@ public class DataWriter {
         }
     }
 
+    /**
+     * Closes the connection to the database.
+     *
+     * @throws RuntimeException if the connection to the database could not be
+     *                          closed.
+     */
     public void close(){
         try {
             connection.close();
@@ -31,72 +53,17 @@ public class DataWriter {
         }
     }
 
-    // Task
-
-    public void writeTask(Task task) {
-
-        // SQL INSERT statement
-        String sql = "INSERT INTO tasks(task_id, name, project_id) VALUES(?,?,?)";
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setInt(1, task.getTaskID());
-            preparedStatement.setString(2, task.getName());
-
-            if (task.getProject() != null)
-                preparedStatement.setInt(3, task.getProject().getProjectID());
-            else
-                preparedStatement.setInt(3, -1);
-
-
-            int rowsInserted = preparedStatement.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Task added!");
-            } else {
-                System.out.println("Error adding the task!");
-            }
-
-            preparedStatement.close();
-
-        } catch (SQLException e) {
-            System.err.println("Error when connecting to the database!");
-        }
-    }
-
-    public void updateTask(Task task) {
-
-        // SQL INSERT statement
-        String sql = "UPDATE tasks SET name = ?, project_id = ? WHERE task_id = ?";
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setString(1, task.getName());
-            if (task.getProject() != null)
-                preparedStatement.setInt(2, task.getProject().getProjectID());
-            else
-                preparedStatement.setInt(2, -1);
-
-            preparedStatement.setInt(3, task.getTaskID());
-
-            // check if something was changed
-            int rowsInserted = preparedStatement.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Task updated!");
-            } else {
-                System.out.println("Nothing from the task was updated!");
-            }
-
-            preparedStatement.close();
-
-        } catch (SQLException e) {
-            System.err.println("Error when connecting to the database!");
-        }
-    }
-
     // Project
 
+    /**
+     * Writes a project to the database.
+     * Only use this method if the project is not already in the database.
+     * An error will be thrown if the project is already in the database.
+     *
+     * @param project The project to be written to the database.
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
     public void writeProject(Project project) {
 
         // SQL INSERT statement
@@ -128,6 +95,15 @@ public class DataWriter {
         }
     }
 
+    /**
+     * Updates a project in the database.
+     * Only use this method if the project is already in the database.
+     * The project will not be added to the database if it is not already in it.
+     *
+     * @param project The project to be updated in the database.
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
     public void updateProject(Project project) {
 
         // SQL INSERT statement
@@ -164,6 +140,15 @@ public class DataWriter {
 
     // Tag
 
+    /**
+     * Writes a tag to the database.
+     * Only use this method if the tag is not already in the database.
+     * An error will be thrown if the tag is already in the database.
+     *
+     * @param tag The tag to be written to the database.
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
     public void writeTag(Tag tag) {
 
         // SQL INSERT statement
@@ -198,6 +183,15 @@ public class DataWriter {
 
     }
 
+    /**
+     * Updates a tag in the database.
+     * Only use this method if the tag is already in the database.
+     * The tag will not be added to the database if it is not already in it.
+     *
+     * @param tag The tag to be updated in the database.
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
     public void updateTag(Tag tag) {
 
         // SQL INSERT statement
@@ -234,8 +228,99 @@ public class DataWriter {
 
     }
 
+    // Task
+
+    /**
+     * Writes a task to the database.
+     * Only use this method if the task is not already in the database.
+     * An error will be thrown if the task is already in the database.
+     *
+     * @param task The task to be written to the database.
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
+    public void writeTask(Task task) {
+
+        // SQL INSERT statement
+        String sql = "INSERT INTO tasks(task_id, name, project_id) VALUES(?,?,?)";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, task.getTaskID());
+            preparedStatement.setString(2, task.getName());
+
+            if (task.getProject() != null)
+                preparedStatement.setInt(3, task.getProject().getProjectID());
+            else
+                preparedStatement.setInt(3, -1);
+
+
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Task added!");
+            } else {
+                System.out.println("Error adding the task!");
+            }
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            System.err.println("Error when connecting to the database!");
+        }
+    }
+
+    /**
+     * Updates a task in the database.
+     * Only use this method if the task is already in the database.
+     * The task will not be added to the database if it is not already in it.
+     *
+     * @param task The task to be updated in the database.
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
+    public void updateTask(Task task) {
+
+        // SQL INSERT statement
+        String sql = "UPDATE tasks SET name = ?, project_id = ? WHERE task_id = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, task.getName());
+            if (task.getProject() != null)
+                preparedStatement.setInt(2, task.getProject().getProjectID());
+            else
+                preparedStatement.setInt(2, -1);
+
+            preparedStatement.setInt(3, task.getTaskID());
+
+            // check if something was changed
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Task updated!");
+            } else {
+                System.out.println("Nothing from the task was updated!");
+            }
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            System.err.println("Error when connecting to the database!");
+        }
+    }
+
     // TimeIntervals
 
+    /**
+     * Writes a time interval to the database.
+     * Only use this method if the time interval is not already in the database.
+     * An error will be thrown if the time interval is already in the database.
+     *
+     * @param timeInterval The time interval to be written to the database.
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
     public void writeTimeIntervals(TimeInterval timeInterval) {
 
         // SQL INSERT statement
@@ -264,6 +349,15 @@ public class DataWriter {
         }
     }
 
+    /**
+     * Updates a time interval in the database.
+     * Only use this method if the time interval is already in the database.
+     * The time interval will not be added to the database if it is not already in it.
+     *
+     * @param timeInterval The time interval to be updated in the database.
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
     public void updateTimeIntervals(TimeInterval timeInterval) {
 
         // SQL INSERT statement
@@ -294,6 +388,13 @@ public class DataWriter {
 
     // MaxIDs
 
+    /**
+     * Updates the max IDs in the database.
+     * This method should be called after every write or update method.
+     *
+     * @throws RuntimeException if the connection to the database could not be
+     *                          established.
+     */
     public void updateMaxIDs() {
 
         // SQL INSERT statement

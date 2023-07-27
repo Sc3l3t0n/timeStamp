@@ -7,12 +7,16 @@ import java.util.List;
  * This class represents a task.
  * A task has a name, a project, time intervals and tags.
  *
- * @version 0.1
+ * @author Marlon Rosenberg
+ * @version 0.2
  */
 public class Task {
 
     // Attributes
 
+    /**
+     * The unique ID of the task.
+     */
     final private int taskID;
 
     /**
@@ -162,5 +166,14 @@ public class Task {
         return this.tags.remove(tag);
     }
 
-
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskID=" + taskID +
+                ", name='" + name + '\'' +
+                ", project=" + project +
+                ", timeIntervals=" + timeIntervals +
+                ", tags=" + tags +
+                '}';
+    }
 }

@@ -7,7 +7,8 @@ import java.util.List;
  * This class represents a project.
  * A project has a name, a description, a parent, subprojects, tasks and tags.
  *
- * @version 0.1
+ * @author Marlon Rosenberg
+ * @version 0.2
  */
 public class Project {
 
@@ -197,5 +198,14 @@ public class Project {
         return this.tasks.remove(task);
     }
 
-
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectID=" + projectID +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", parent=" + parent +
+                ", tags=" + tags +
+                '}';
+    }
 }

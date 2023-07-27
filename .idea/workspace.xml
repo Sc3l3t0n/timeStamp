@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba61e697-fab8-41a2-9538-270e0983d544" name="Changes" comment="Feat: Added update functions to DataWriter">
+    <list default="true" id="ba61e697-fab8-41a2-9538-270e0983d544" name="Changes" comment="feat: Add a maxID system (#4)&#10;&#10;Add a maxID system to the database and DataWriter.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/API/DataReader.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/console/cli.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/API/DataCollector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/API/DataWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/API/DataWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/GlobalVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/GlobalVariables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/TimeInterval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/TimeInterval.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +33,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
@@ -45,12 +55,14 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/marlo/Documents/Programmieren/Java/timeStemp/src/main/resources",
+    "last_opened_file_path": "C:/Users/marlo/Documents/Programmieren/Java/timeStemp/database.sqlite",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "two.files.diff.last.used.file": "C:/Users/marlo/Documents/Programmieren/Java/timeStemp/database.sqlite",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -75,7 +87,8 @@
       <workItem from="1690467871568" duration="4906000" />
       <workItem from="1690477005745" duration="3136000" />
       <workItem from="1690480163125" duration="5245000" />
-      <workItem from="1690485698851" duration="4701000" />
+      <workItem from="1690485698851" duration="5200000" />
+      <workItem from="1690492425242" duration="8697000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -117,7 +130,55 @@
       <option name="project" value="LOCAL" />
       <updated>1690491690499</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix: cleaned up main class">
+      <option name="closed" value="true" />
+      <created>1690492062186</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1690492062186</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fix: Fixed some warnings">
+      <option name="closed" value="true" />
+      <created>1690492238447</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1690492238447</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix: Fixed some warnings">
+      <option name="closed" value="true" />
+      <created>1690492379516</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1690492379516</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fix: preparedStatement will now be closed">
+      <option name="closed" value="true" />
+      <created>1690495928583</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1690495928583</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactor: Refactor ID-system and add HashMaps of datatype&#10;&#10;In addition, children now add themselves to the parent objects">
+      <option name="closed" value="true" />
+      <created>1690496221737</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1690496221737</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: Add a maxID system (#4)&#10;&#10;Add a maxID system to the database and DataWriter.">
+      <option name="closed" value="true" />
+      <created>1690498154897</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1690498154897</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +201,11 @@
     <MESSAGE value="Removed wrong README.md" />
     <MESSAGE value="Feat: First iteration of data-bank connectivity" />
     <MESSAGE value="Feat: Added update functions to DataWriter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feat: Added update functions to DataWriter" />
+    <MESSAGE value="Fix: cleaned up main class" />
+    <MESSAGE value="Fix: Fixed some warnings" />
+    <MESSAGE value="Fix: preparedStatement will now be closed" />
+    <MESSAGE value="refactor: Refactor ID-system and add HashMaps of datatype&#10;&#10;In addition, children now add themselves to the parent objects" />
+    <MESSAGE value="feat: Add a maxID system (#4)&#10;&#10;Add a maxID system to the database and DataWriter." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Add a maxID system (#4)&#10;&#10;Add a maxID system to the database and DataWriter." />
   </component>
 </project>
