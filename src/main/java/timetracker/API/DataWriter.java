@@ -16,7 +16,6 @@ public class DataWriter {
 
     public DataWriter() {
         try{
-
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:database.sqlite");
 
@@ -61,6 +60,8 @@ public class DataWriter {
                 System.out.println("Error adding the task!");
             }
 
+            preparedStatement.close();
+
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
         }
@@ -89,6 +90,8 @@ public class DataWriter {
             } else {
                 System.out.println("Nothing from the task was updated!");
             }
+
+            preparedStatement.close();
 
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
@@ -120,6 +123,8 @@ public class DataWriter {
             } else {
                 System.out.println("Error adding the project!");
             }
+
+            preparedStatement.close();
 
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
@@ -153,6 +158,8 @@ public class DataWriter {
                 System.out.println("Nothing from the project was updated!");
             }
 
+            preparedStatement.close();
+
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
         }
@@ -182,6 +189,8 @@ public class DataWriter {
             } else {
                 System.out.println("Error adding the tag");
             }
+
+            preparedStatement.close();
 
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
@@ -217,6 +226,8 @@ public class DataWriter {
                 System.out.println("Nothing from the tag was updated!");
             }
 
+            preparedStatement.close();
+
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
             throw new RuntimeException(e);
@@ -244,6 +255,8 @@ public class DataWriter {
                 System.out.println("Error adding the interval");
             }
 
+            preparedStatement.close();
+
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
             throw new RuntimeException(e);
@@ -269,6 +282,8 @@ public class DataWriter {
             } else {
                 System.out.println("Nothing from the interval was updated!");
             }
+
+            preparedStatement.close();
 
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
