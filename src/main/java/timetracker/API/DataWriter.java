@@ -5,10 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import timetracker.data.Project;
-import timetracker.data.Tag;
-import timetracker.data.Task;
-import timetracker.data.TimeInterval;
+import timetracker.data.*;
 
 public class DataWriter {
 
@@ -165,6 +162,8 @@ public class DataWriter {
         }
     }
 
+    // Tag
+
     public void writeTag(Tag tag) {
 
         // SQL INSERT statement
@@ -235,6 +234,8 @@ public class DataWriter {
 
     }
 
+    // TimeIntervals
+
     public void writeTimeIntervals(TimeInterval timeInterval) {
 
         // SQL INSERT statement
@@ -289,5 +290,47 @@ public class DataWriter {
             System.err.println("Error when connecting to the database!");
             throw new RuntimeException(e);
         }
+    }
+
+    // MaxIDs
+
+    public void updateMaxIDs() {
+
+        // SQL INSERT statement
+        String sql = "UPDATE maxids SET max_id = ? WHERE data_type = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            // Project_ID
+            preparedStatement.setInt(1, GlobalVariables.getLastProjectId());
+            preparedStatement.setString(2, "project_id");
+
+            preparedStatement.executeUpdate();
+
+            // Tag_ID
+            preparedStatement.setInt(1, GlobalVariables.getLastTagId());
+            preparedStatement.setString(2, "tag_id");
+
+            preparedStatement.executeUpdate();
+
+            // Task_ID
+            preparedStatement.setInt(1, GlobalVariables.getLastTaskId());
+            preparedStatement.setString(2, "task_id");
+
+            preparedStatement.executeUpdate();
+
+            // Interval_ID
+            preparedStatement.setInt(1, GlobalVariables.getLastTimeIntervalId());
+            preparedStatement.setString(2, "interval_id");
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
