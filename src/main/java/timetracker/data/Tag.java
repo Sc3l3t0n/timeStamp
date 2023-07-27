@@ -1,13 +1,10 @@
 package timetracker.data;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * This class represents a tag.
- * A tag has a name, a parent and a color.
- *
- * @version 0.1
- */
+
 public class Tag {
 
     private final int tagID;
@@ -16,13 +13,19 @@ public class Tag {
 
     private Tag parent;
 
+    private final List<Tag> childTags;
+
     private Color color;
 
-    public Tag(String name, Tag parent, Color color) {
-        this.tagID = GlobalVariables.TAG_ID;
-        GlobalVariables.TAG_ID += 1;
+    public Tag(int tagID, String name, Tag parent, Color color) {
+        this.tagID = tagID;
+        GlobalVariables.TAG_MAP.put(tagID, this);
+
+        if(parent != null) parent.addChildTag(this);
+
         this.name = name;
         this.parent = parent;
+        this.childTags = new ArrayList<>();
         this.color = color;
     }
 
@@ -44,6 +47,14 @@ public class Tag {
 
     public void setParent(Tag parent) {
         this.parent = parent;
+    }
+
+    public List<Tag> getChildTags() {
+        return childTags;
+    }
+
+    public void addChildTag(Tag tag) {
+        childTags.add(tag);
     }
 
     public Color getColor() {

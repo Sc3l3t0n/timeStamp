@@ -53,18 +53,21 @@ public class Project {
     /**
      * Creates a new project with the given name, description, parent and tags.
      *
+     * @param projectID The unique id of the project.
      * @param name The name of the project.
      * @param description The description of the project.
      * @param parent The parent of the project.
-     * @param tags The tags of the project.
      */
-    public Project(String name,String description, Project parent, List<Tag> tags) {
-        this.projectID = GlobalVariables.PROJECT_ID + 1;
-        GlobalVariables.PROJECT_ID += 1;
+    public Project(int projectID, String name,String description, Project parent) {
+        this.projectID = GlobalVariables.getNextProjectId();
+        GlobalVariables.PROJECT_MAP.put(projectID, this);
+
         this.name = name;
         this.description = description;
         this.parent = parent;
-        this.tags = tags;
+        if (parent != null) parent.addSubProject(this);
+
+        this.tags = new ArrayList<>();
 
         this.subProjects = new ArrayList<>();
         this.tasks = new ArrayList<>();

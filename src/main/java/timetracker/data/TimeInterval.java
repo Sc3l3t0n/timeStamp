@@ -22,10 +22,12 @@ public class TimeInterval{
 
     private Boolean play;
 
-    public TimeInterval(Task task) {
-        this.intervalID = GlobalVariables.TIME_INTERVAL_ID;
-        GlobalVariables.TIME_INTERVAL_ID += 1;
+    public TimeInterval(int intervalID, Task task) {
+        this.intervalID = intervalID;
+        GlobalVariables.TIME_INTERVAL_MAP.put(intervalID, this);
         this.task = task;
+
+        if (task != null) task.addTimeInterval(this);
 
         this.startTime = null;
         this.endTime = null;

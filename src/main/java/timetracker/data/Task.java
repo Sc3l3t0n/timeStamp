@@ -1,5 +1,6 @@
 package timetracker.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,18 +40,21 @@ public class Task {
     /**
      * Creates a new task with the given name, project, time intervals and tags.
      *
+     * @param taskID The unique ID of the task.
      * @param name The name of the task.
      * @param project The project of the task.
-     * @param timeInterval The time intervals of the task.
-     * @param tags The tags of the task.
+
      */
-    public Task (String name, Project project, List<TimeInterval> timeInterval, List<Tag> tags) {
-        this.taskID = GlobalVariables.TASK_ID;
-        GlobalVariables.TASK_ID += 1;
+    public Task (int taskID, String name, Project project) {
+        this.taskID = taskID;
+        GlobalVariables.TASK_MAP.put(taskID, this);
+
+        if (project != null) project.addTask(this);
+
         this.name = name;
         this.project = project;
-        this.timeIntervals = timeInterval;
-        this.tags = tags;
+        this.timeIntervals = new ArrayList<>();
+        this.tags = new ArrayList<>();
     }
 
     // Setter and Getter

@@ -11,15 +11,13 @@ public class Test {
 
     public static void test() {
 
-        GlobalVariables.PROJECT_ID = 1;
-        Project project = new Project("Update", "An Example one", null, new ArrayList<>());
+        Project project = new Project(GlobalVariables.getNextProjectId(), "Update", "An Example one", null);
 
-        GlobalVariables.TAG_ID = 1;
-        Task exampleTask = new Task("Update", project, new ArrayList<>(), new ArrayList<>());
+        Task exampleTask = new Task(GlobalVariables.getNextTaskId(), "Update", project);
 
-        TimeInterval timeInterval = new TimeInterval(exampleTask);
+        TimeInterval timeInterval = new TimeInterval(GlobalVariables.getNextTimeIntervalId(), exampleTask);
 
-        Tag tag = new Tag("Update", null, Color.BLUE);
+        Tag tag = new Tag(GlobalVariables.getNextTagId(), "Update", null, Color.BLUE);
 
         timeInterval.start();
         timeInterval.stop();
