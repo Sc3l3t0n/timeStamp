@@ -169,7 +169,7 @@ public class TimeInterval{
     public String toString() {
         return "TimeInterval{" +
                 "intervalID=" + intervalID +
-                ", task=" + task +
+                ", task=" + task.getName() +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", play=" + play +
