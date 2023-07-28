@@ -48,7 +48,7 @@ public class TimeInterval{
      */
     public TimeInterval(int intervalID, Task task) {
         this.intervalID = intervalID;
-        GlobalVariables.TIME_INTERVAL_MAP.put(intervalID, this);
+        GlobalVariables.ID_TO_TIME_INTERVAL_MAP.put(intervalID, this);
         this.task = task;
 
         if (task != null) task.addTimeInterval(this);
@@ -63,7 +63,7 @@ public class TimeInterval{
      *
      * @return The duration of the time interval.
      */
-    Duration getDuration() {
+    public Duration getDuration() {
         return Duration.between(startTime, endTime);
     }
 

@@ -52,7 +52,8 @@ public class Tag {
      */
     public Tag(int tagID, String name, Tag parent, Color color) {
         this.tagID = tagID;
-        GlobalVariables.TAG_MAP.put(tagID, this);
+        GlobalVariables.ID_TO_TAG_MAP.put(tagID, this);
+        GlobalVariables.NAME_TO_TAG_MAP.put(name, this);
 
         if(parent != null) parent.addChildTag(this);
 

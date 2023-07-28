@@ -2,7 +2,6 @@ package timetracker.data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * This class represents a project.
@@ -62,7 +61,8 @@ public class Project {
      */
     public Project(int projectID, String name,String description, Project parent) {
         this.projectID = projectID;
-        GlobalVariables.PROJECT_MAP.put(projectID, this);
+        GlobalVariables.ID_TO_PROJECT_MAP.put(projectID, this);
+        GlobalVariables.NAME_TO_PROJECT_MAP.put(name, this);
 
         this.name = name;
         this.description = description;

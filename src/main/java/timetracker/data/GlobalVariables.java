@@ -33,33 +33,62 @@ public class GlobalVariables {
 
     // Maps
 
+    // Project
     /**
      * The map of all projects.
      * The key is the ID of the project.
      * The value is the project.
      */
-    public static final HashMap<Integer, Project> PROJECT_MAP = new HashMap<>();
+    public static final HashMap<Integer, Project> ID_TO_PROJECT_MAP = new HashMap<>();
+
+    /**
+     * The map of all projects.
+     * The key is the name of the project.
+     * The value is the project.
+     */
+    public static final HashMap<String, Project> NAME_TO_PROJECT_MAP = new HashMap<>();
+
+    // Tag
 
     /**
      * The map of all tags.
      * The key is the ID of the tag.
      * The value is the tag.
      */
-    public static final HashMap<Integer, Tag> TAG_MAP = new HashMap<>();
+    public static final HashMap<Integer, Tag> ID_TO_TAG_MAP = new HashMap<>();
+
+    /**
+     * The map of all tags.
+     * The key is the name of the tag.
+     * The value is the tag.
+     */
+    public static final HashMap<String, Tag> NAME_TO_TAG_MAP = new HashMap<>();
+
+    // Task
 
     /**
      * The map of all tasks.
      * The key is the ID of the task.
      * The value is the task.
      */
-    public static final HashMap<Integer, Task> TASK_MAP = new HashMap<>();
+    public static final HashMap<Integer, Task> ID_TO_TASK_MAP = new HashMap<>();
+
+    /**
+     * The map of all tasks.
+     * The key is the name of the task.
+     * The value is the task.
+     */
+    public static final HashMap<String, Task> NAME_TO_TASK_MAP = new HashMap<>();
+
+    // TimeInterval
 
     /**
      * The map of all time intervals.
      * The key is the ID of the time interval.
      * The value is the time interval.
      */
-    public static final HashMap<Integer, TimeInterval> TIME_INTERVAL_MAP = new HashMap<>();
+    public static final HashMap<Integer, TimeInterval> ID_TO_TIME_INTERVAL_MAP = new HashMap<>();
+
 
     // Getter and Setter
 

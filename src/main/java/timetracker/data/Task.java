@@ -1,8 +1,8 @@
 package timetracker.data;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * This class represents a task.
@@ -52,7 +52,8 @@ public class Task {
      */
     public Task (int taskID, String name, Project project) {
         this.taskID = taskID;
-        GlobalVariables.TASK_MAP.put(taskID, this);
+        GlobalVariables.ID_TO_TASK_MAP.put(taskID, this);
+        GlobalVariables.NAME_TO_TASK_MAP.put(name, this);
 
         if (project != null) project.addTask(this);
 
@@ -62,7 +63,24 @@ public class Task {
         this.tags = new ArrayList<>();
     }
 
+    // Methods
+
+
+
     // Setter and Getter
+
+    /**
+     * Returns the duration of all time intervals of the task.
+     *
+     * @return The duration of all time intervals of the task.
+     */
+    public Duration getDuration() {
+    	Duration duration = Duration.ZERO;
+    	for (TimeInterval timeInterval : timeIntervals) {
+    		duration = duration.plus(timeInterval.getDuration());
+    	}
+    	return duration;
+    }
 
     /**
      * Returns the unique ID of the task.
