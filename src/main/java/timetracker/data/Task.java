@@ -2,6 +2,7 @@ package timetracker.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class represents a task.
@@ -164,6 +165,16 @@ public class Task {
      */
     public boolean removeTag(Tag tag) {
         return this.tags.remove(tag);
+    }
+
+    // Utility
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return taskID == task.taskID;
     }
 
     @Override

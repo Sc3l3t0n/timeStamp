@@ -2,6 +2,7 @@ package timetracker.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class represents a project.
@@ -60,7 +61,7 @@ public class Project {
      * @param parent The parent of the project.
      */
     public Project(int projectID, String name,String description, Project parent) {
-        this.projectID = GlobalVariables.getNextProjectId();
+        this.projectID = projectID;
         GlobalVariables.PROJECT_MAP.put(projectID, this);
 
         this.name = name;
@@ -196,6 +197,16 @@ public class Project {
      */
     public boolean removeTask(Task task) {
         return this.tasks.remove(task);
+    }
+
+    // Utility
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Project project = (Project) o;
+        return projectID == project.projectID;
     }
 
     @Override
