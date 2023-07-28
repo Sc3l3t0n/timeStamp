@@ -173,7 +173,6 @@ public class Task {
                 ", name='" + name + '\'' +
                 ", project=" + project +
                 ", timeIntervals=" + timeIntervals +
-                ", tags=" + tags +
                 '}';
     }
 }
