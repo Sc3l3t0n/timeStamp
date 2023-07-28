@@ -1,7 +1,5 @@
 package timetracker.API;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -294,7 +292,7 @@ public class DataWriter extends DatabaseConnection{
      * @throws RuntimeException if the connection to the database could not be
      *                          established.
      */
-    public void writeTimeIntervals(TimeInterval timeInterval) {
+    public void writeTimeInterval(TimeInterval timeInterval) {
 
         // SQL INSERT statement
         String sql = "INSERT INTO timeintervals(interval_id, task_id, start_time, end_time) VALUES(?,?,?,?)";
@@ -331,7 +329,7 @@ public class DataWriter extends DatabaseConnection{
      * @throws RuntimeException if the connection to the database could not be
      *                          established.
      */
-    public void updateTimeIntervals(TimeInterval timeInterval) {
+    public void updateTimeInterval(TimeInterval timeInterval) {
 
         // SQL INSERT statement
         String sql = "UPDATE timeintervals SET task_id =?, start_time = ?, end_time = ? WHERE interval_id = ?";
@@ -377,25 +375,25 @@ public class DataWriter extends DatabaseConnection{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             // Project_ID
-            preparedStatement.setInt(1, GlobalVariables.getLastProjectId());
+            preparedStatement.setInt(1, GlobalVariables.getLastProjectId() + 1);
             preparedStatement.setString(2, "project_id");
 
             preparedStatement.executeUpdate();
 
             // Tag_ID
-            preparedStatement.setInt(1, GlobalVariables.getLastTagId());
+            preparedStatement.setInt(1, GlobalVariables.getLastTagId() + 1);
             preparedStatement.setString(2, "tag_id");
 
             preparedStatement.executeUpdate();
 
             // Task_ID
-            preparedStatement.setInt(1, GlobalVariables.getLastTaskId());
+            preparedStatement.setInt(1, GlobalVariables.getLastTaskId() + 1);
             preparedStatement.setString(2, "task_id");
 
             preparedStatement.executeUpdate();
 
             // Interval_ID
-            preparedStatement.setInt(1, GlobalVariables.getLastTimeIntervalId());
+            preparedStatement.setInt(1, GlobalVariables.getLastTimeIntervalId() + 1);
             preparedStatement.setString(2, "interval_id");
 
             preparedStatement.executeUpdate();
