@@ -11,7 +11,7 @@ import timetracker.data.*;
  * The DataWriter connects to the database and writes or updates the data.
  *
  * @author Marlon Rosenberg
- * @version 0.2
+ * @version 0.3
  */
 public class DataWriter extends DatabaseConnection{
 
@@ -32,8 +32,6 @@ public class DataWriter extends DatabaseConnection{
      * An error will be thrown if the project is already in the database.
      *
      * @param project The project to be written to the database.
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
      */
     public void writeProject(Project project) {
 
@@ -72,8 +70,6 @@ public class DataWriter extends DatabaseConnection{
      * The project will not be added to the database if it is not already in it.
      *
      * @param project The project to be updated in the database.
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
      */
     public void updateProject(Project project) {
 
@@ -117,8 +113,6 @@ public class DataWriter extends DatabaseConnection{
      * An error will be thrown if the tag is already in the database.
      *
      * @param tag The tag to be written to the database.
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
      */
     public void writeTag(Tag tag) {
 
@@ -160,8 +154,6 @@ public class DataWriter extends DatabaseConnection{
      * The tag will not be added to the database if it is not already in it.
      *
      * @param tag The tag to be updated in the database.
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
      */
     public void updateTag(Tag tag) {
 
@@ -207,8 +199,6 @@ public class DataWriter extends DatabaseConnection{
      * An error will be thrown if the task is already in the database.
      *
      * @param task The task to be written to the database.
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
      */
     public void writeTask(Task task) {
 
@@ -247,8 +237,6 @@ public class DataWriter extends DatabaseConnection{
      * The task will not be added to the database if it is not already in it.
      *
      * @param task The task to be updated in the database.
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
      */
     public void updateTask(Task task) {
 
@@ -289,8 +277,6 @@ public class DataWriter extends DatabaseConnection{
      * An error will be thrown if the time interval is already in the database.
      *
      * @param timeInterval The time interval to be written to the database.
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
      */
     public void writeTimeInterval(TimeInterval timeInterval) {
 
@@ -326,8 +312,6 @@ public class DataWriter extends DatabaseConnection{
      * The time interval will not be added to the database if it is not already in it.
      *
      * @param timeInterval The time interval to be updated in the database.
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
      */
     public void updateTimeInterval(TimeInterval timeInterval) {
 
@@ -360,11 +344,11 @@ public class DataWriter extends DatabaseConnection{
     // MaxIDs
 
     /**
-     * Updates the max IDs in the database.
-     * This method should be called after every write or update method.
+     * Updates every max IDs to the database.
      *
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
+     * Performances issues may occur.
+     * Use {@link DataWriter#updateProjectID()}, {@link DataWriter#updateTagID()},
+     * {@link DataWriter#updateTaskID()} or {@link DataWriter#updateIntervalID()} instead for better performances.
      */
     public void updateMaxIDs() {
 
@@ -403,6 +387,93 @@ public class DataWriter extends DatabaseConnection{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    /**
+     * Updates ProjectID to the database.
+     * Better performances than {@link DataWriter#updateMaxIDs()}.
+     */
+    public void updateProjectID() {
+        String sql = "UPDATE maxids SET max_id = ? WHERE data_type = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, GlobalVariables.getLastProjectId() + 1);
+            preparedStatement.setString(2, "project_id");
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Updates TagID to the database.
+     * Better performances than {@link DataWriter#updateMaxIDs()}.
+     */
+    public void updateTagID() {
+        String sql = "UPDATE maxids SET max_id = ? WHERE data_type = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, GlobalVariables.getLastTagId() + 1);
+            preparedStatement.setString(2, "tag_id");
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Updates TaskID to the database.
+     * Better performances than {@link DataWriter#updateMaxIDs()}.
+     */
+    public void updateTaskID() {
+        String sql = "UPDATE maxids SET max_id = ? WHERE data_type = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, GlobalVariables.getLastTaskId() + 1);
+            preparedStatement.setString(2, "task_id");
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Updates IntervalID to the database.
+     * Better performances than {@link DataWriter#updateMaxIDs()}.
+     */
+    public void updateIntervalID() {
+        String sql = "UPDATE maxids SET max_id = ? WHERE data_type = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setInt(1, GlobalVariables.getLastTimeIntervalId() + 1);
+            preparedStatement.setString(2, "interval_id");
+
+            preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
