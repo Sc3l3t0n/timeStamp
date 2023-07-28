@@ -29,20 +29,17 @@ public class DataReader {
      * @throws RuntimeException if the DataReader could not connect to the database.
      */
     public DataReader() {
-        Connection connection = null;
 
         try{
 
             Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:database.sqlite");
+            this.connection = DriverManager.getConnection("jdbc:sqlite:database.sqlite");
 
             System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException("DataWrite could not connect to the database!");
         }
-
-        this.connection = connection;
     }
 
     /**
