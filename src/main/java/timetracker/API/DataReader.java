@@ -50,7 +50,7 @@ public class DataReader extends DatabaseConnection {
                 String name = resultSet.getString(2);
                 String description = resultSet.getString(3);
                 int parentID = resultSet.getInt(4);
-                Project parent = parentID > -1 ? GlobalVariables.PROJECT_MAP.get(parentID) : null;
+                Project parent = parentID > -1 ? GlobalVariables.ID_TO_PROJECT_MAP.get(parentID) : null;
 
                 projects.add(new Project(projectID, name, description, parent));
             }
@@ -87,7 +87,7 @@ public class DataReader extends DatabaseConnection {
                 int tagID = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 int parentID = resultSet.getInt(3);
-                Tag parent = parentID > -1 ? GlobalVariables.TAG_MAP.get(parentID) : null;
+                Tag parent = parentID > -1 ? GlobalVariables.ID_TO_TAG_MAP.get(parentID) : null;
                 Color color = Color.getColor(resultSet.getString(4));
 
 
@@ -126,7 +126,7 @@ public class DataReader extends DatabaseConnection {
                 int taskID = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 int projectID = resultSet.getInt(3);
-                Project project = projectID > -1 ? GlobalVariables.PROJECT_MAP.get(projectID) : null;
+                Project project = projectID > -1 ? GlobalVariables.ID_TO_PROJECT_MAP.get(projectID) : null;
 
                 tasks.add(new Task(taskID, name, project));
             }
@@ -162,7 +162,7 @@ public class DataReader extends DatabaseConnection {
             while (resultSet.next()) {
                 int intervalID = resultSet.getInt(1);
                 int task_id = resultSet.getInt(2);
-                Task task = task_id > -1 ? GlobalVariables.TASK_MAP.get(task_id) : null;
+                Task task = task_id > -1 ? GlobalVariables.ID_TO_TASK_MAP.get(task_id) : null;
                 LocalDateTime startTime = LocalDateTime.parse(resultSet.getString(3));
                 LocalDateTime endTime = LocalDateTime.parse(resultSet.getString(4));
 
