@@ -9,50 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This class in an extension of the {@link DatabaseConnection}.
  * This class is responsible for reading data from the database.
  * The DataReader connects to the database and reads the data.
  *
  * @author Marlon Rosenberg
- * @version 0.1
+ * @version 0.2
  */
-public class DataReader {
-
-    /**
-     * The connection to the database.
-     */
-    final private Connection connection;
+public class DataReader extends DatabaseConnection {
 
     /**
      * Creates a new DataReader.
-     * The DataReader connects to the database.
-     *
-     * @throws RuntimeException if the DataReader could not connect to the database.
+     * A DataReader connects to the database.
+     * Super constructor: {@link DatabaseConnection#DatabaseConnection()}
      */
     public DataReader() {
-
-        try{
-
-            Class.forName("org.sqlite.JDBC");
-            this.connection = DriverManager.getConnection("jdbc:sqlite:database.sqlite");
-
-            System.out.println("Connection to SQLite has been established.");
-
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException("DataWrite could not connect to the database!");
-        }
-    }
-
-    /**
-     * Closes the connection to the database.
-     *
-     * @throws RuntimeException if the DataReader could not close the connection to the database.
-     */
-    public void close(){
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        super();
     }
 
     // Projects

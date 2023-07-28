@@ -8,47 +8,23 @@ import timetracker.data.TimeInterval;
 import java.sql.*;
 
 /**
+ * This class in an extension of the {@link DatabaseConnection}.
  * This class is responsible for removing data from the database.
+ * The DataRemover connects to the database and removes the data.
  *
  * @author Marlon Roseneberg
- * @version 0.1
+ * @version 0.2
  */
-public class DataRemover {
+public class DataRemover extends DatabaseConnection{
+
 
     /**
-     * The connection to the database.
-     */
-    final private Connection connection;
-
-    /**
-     * Creates a new DataReader.
-     * The DataReader connects to the database.
-     *
-     * @throws RuntimeException if the DataReader could not connect to the database.
+     * Creates a new DataRemover.
+     * A DataRemover connects to the database.
+     * Super constructor: {@link DatabaseConnection#DatabaseConnection()}
      */
     public DataRemover() {
-        try {
-            Class.forName("org.sqlite.JDBC");
-            this.connection = DriverManager.getConnection("jdbc:sqlite:database.sqlite");
-
-            System.out.println("Connection to SQLite has been established.");
-
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException("DataWrite could not connect to the database!");
-        }
-    }
-
-    /**
-     * Closes the connection to the database.
-     *
-     * @throws RuntimeException if the DataRemover could not close the connection to the database.
-     */
-    public void close() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        super();
     }
 
     // Project

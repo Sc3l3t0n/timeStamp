@@ -8,49 +8,22 @@ import java.sql.SQLException;
 import timetracker.data.*;
 
 /**
+ * This class in an extension of the {@link DatabaseConnection}.
  * This class is used to write data to the database.
+ * The DataWriter connects to the database and writes or updates the data.
  *
  * @author Marlon Rosenberg
  * @version 0.2
  */
-public class DataWriter {
+public class DataWriter extends DatabaseConnection{
 
     /**
-     * The connection to the database.
-     */
-    final private Connection connection;
-
-    /**
-     * Constructor for the DataWriter class.
-     * Connects to the database.
-     *
-     * @throws RuntimeException if the connection to the database could not be
-     *                          established.
+     * Creates a new DataWriter.
+     * A DataWriter connects to the database.
+     * Super constructor: {@link DatabaseConnection#DatabaseConnection()}
      */
     public DataWriter() {
-        try{
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:database.sqlite");
-
-            System.out.println("Connection to SQLite has been established.");
-
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException("DataWrite could not connect to the database!");
-        }
-    }
-
-    /**
-     * Closes the connection to the database.
-     *
-     * @throws RuntimeException if the connection to the database could not be
-     *                          closed.
-     */
-    public void close(){
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        super();
     }
 
     // Project
