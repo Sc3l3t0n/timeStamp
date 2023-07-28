@@ -1,3 +1,4 @@
+![Status](https://img.shields.io/badge/Status-very_early_development-yellow) ![Version](https://img.shields.io/badge/Version-0.0.1-orange) ![Testing](https://img.shields.io/badge/Testing-not%20implemented-red) [![wakatime](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934.svg)](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934)
 # timeStemp - A Time Tracker App
 
 timeStemp is a time tracker app developed as a personal project to practice and enhance programming skills. 
@@ -5,7 +6,7 @@ The app allows users to efficiently track and manage their time for various acti
 
 # Table of Contents
 
-- [Introduction](#Introduction)
+- [Introduction](#introduction)
 - [Features](#features)
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)
