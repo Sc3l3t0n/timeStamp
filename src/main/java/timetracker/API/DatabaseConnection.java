@@ -43,7 +43,7 @@ public abstract class DatabaseConnection {
      *
      * @throws RuntimeException if the DataConnection could not close the connection to the database.
      */
-    protected void close(){
+    public void close(){
         try {
             connection.close();
         } catch (SQLException e) {
