@@ -1,24 +1,26 @@
 package timetracker.data;
 
+import timetracker.API.DataReader;
+import timetracker.API.DataRemover;
+import timetracker.API.DataWriter;
+
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This class represents a task.
+ * A Task is a {@link DataType}
  * A task has a name, a project, time intervals and tags.
+ * A task can be written to the database, updated in the database and removed from the database.
+ * A task can be added to the global variables, removed from the global variables and updated in the global variables.
  *
  * @author Marlon Rosenberg
- * @version 0.2
+ * @version 0.9
  */
-public class Task {
+public class Task extends DataType{
 
     // Attributes
-
-    /**
-     * The unique ID of the task.
-     */
-    final private int taskID;
 
     /**
      * The name of the task.
@@ -36,6 +38,11 @@ public class Task {
     final private List<TimeInterval> timeIntervals;
 
     /**
+     * The current time interval of the task.
+     */
+    private TimeInterval currentInterval;
+
+    /**
      * The tags of the task.
      */
     final private List<Tag> tags;
@@ -44,16 +51,15 @@ public class Task {
 
     /**
      * Creates a new task with the given name, project, time intervals and tags.
+     * If project is not null, the task will be added to the project's tasks.
      *
-     * @param taskID The unique ID of the task.
+     * @param id The unique ID of the task.
      * @param name The name of the task.
      * @param project The project of the task.
 
      */
-    public Task (int taskID, String name, Project project) {
-        this.taskID = taskID;
-        GlobalVariables.ID_TO_TASK_MAP.put(taskID, this);
-        GlobalVariables.NAME_TO_TASK_MAP.put(name, this);
+    public Task (int id, String name, Project project) {
+        super(id);
 
         if (project != null) project.addTask(this);
 
@@ -65,6 +71,86 @@ public class Task {
 
     // Methods
 
+    /**
+     * Starts the task with a new time interval.
+     * If the task is already running, an exception is thrown.
+     *
+     * @throws IllegalStateException If the task is already running.
+     */
+    public void start() {
+        if (currentInterval != null) {
+            throw new IllegalStateException("Task already running");
+        }
+        this.currentInterval = new TimeInterval(GlobalVariables.getNextTimeIntervalId(), this);
+        this.currentInterval.start();
+    }
+
+    /**
+     * Stops the task by stopping the current time interval.
+     * If the task is not running, an exception is thrown.
+     *
+     * @throws IllegalStateException If the task is not running.
+     */
+    public void stop() {
+        if (currentInterval == null) {
+            throw new IllegalStateException("Task not running");
+        }
+        this.currentInterval.stop();
+        this.currentInterval = null;
+    }
+
+    /**
+     * Removes the task from global variables but not from the database.
+     * Removes the task from the project.
+     * Removes all time intervals of the task.
+     */
+    @Override
+    public void remove() {
+        if (project != null) project.removeTask(this);
+        for (TimeInterval timeInterval : timeIntervals) {
+            timeInterval.remove();
+        }
+        timeIntervals.clear();
+        removeGlobal();
+    }
+
+    // Global methods
+
+    @Override
+    public void addGlobal() {
+        GlobalVariables.ID_TO_TASK_MAP.put(getID(), this);
+        GlobalVariables.NAME_TO_TASK_MAP.put(name, this);
+    }
+
+    @Override
+    public void removeGlobal() {
+        GlobalVariables.ID_TO_TASK_MAP.remove(getID());
+        GlobalVariables.NAME_TO_TASK_MAP.remove(name);
+    }
+
+
+    // Database methods
+
+    @Override
+    public void writeDatabase() {
+    	DataWriter dataWriter = new DataWriter();
+        dataWriter.writeTask(this);
+        dataWriter.close();
+    }
+
+    @Override
+    public void updateDatabase() {
+        DataWriter dataWriter = new DataWriter();
+        dataWriter.updateTask(this);
+        dataWriter.close();
+    }
+
+    @Override
+    public void removeDatabase() {
+        DataRemover dataRemover = new DataRemover();
+        dataRemover.removeTask(this);
+        dataRemover.close();
+    }
 
 
     // Setter and Getter
@@ -83,15 +169,6 @@ public class Task {
     }
 
     /**
-     * Returns the unique ID of the task.
-     *
-     * @return The unique ID of the task.
-     */
-    public int getTaskID() {
-        return taskID;
-    }
-
-    /**
      * Returns the name of the task.
      *
      * @return The name of the task.
@@ -106,7 +183,9 @@ public class Task {
      * @param name The name of the task.
      */
     public void setName(String name) {
+        GlobalVariables.NAME_TO_TASK_MAP.remove(name);
         this.name = name;
+        GlobalVariables.NAME_TO_TASK_MAP.put(name, this);
     }
 
     /**
@@ -123,7 +202,7 @@ public class Task {
      *
      * @param project The project of the task.
      */
-    public void setProject(Project project) {
+    protected void setProject(Project project) {
         this.project = project;
     }
 
@@ -179,26 +258,17 @@ public class Task {
      * Removes a tag from the task.
      *
      * @param tag The tag to remove.
-     * @return True if the tag was removed, false otherwise.
      */
-    public boolean removeTag(Tag tag) {
-        return this.tags.remove(tag);
+    public void removeTag(Tag tag) {
+        this.tags.remove(tag);
     }
 
     // Utility
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Task task = (Task) o;
-        return taskID == task.taskID;
-    }
-
-    @Override
     public String toString() {
         return "Task{" +
-                "taskID=" + taskID +
+                "taskID=" + getID() +
                 ", name='" + name + '\'' +
                 ", project=" + project +
                 ", timeIntervals=" + timeIntervals +

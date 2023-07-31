@@ -12,29 +12,28 @@ class DatabaseConnectionTest {
 
     private final DataReader dataReader = new DataReader();
     private final DataWriter dataWriter = new DataWriter();
-    private final DataRemover dataRemover = new DataRemover();
 
     @Test
     void testDataProjects() {
 
         Project project = new Project(-2, "JUnitTest", "An Test Project", null);
-        GlobalVariables.ID_TO_PROJECT_MAP.remove(-2);
+        project.writeDatabase();
 
         // write
-        dataWriter.writeProject(project);
         assertTrue(dataReader.readAllProjects().contains(project));
+        dataReader.readInProjectsToGlobal();
         assertTrue(GlobalVariables.ID_TO_PROJECT_MAP.containsValue(project));
 
         //  update
         project.setName("JUnitTestUpdate");
-        dataWriter.updateProject(project);
-        GlobalVariables.ID_TO_PROJECT_MAP.remove(-2);
+        project.updateDatabase();
         assertTrue(dataReader.readAllProjects().contains(project));
+        dataReader.readInProjectsToGlobal();
         assertEquals(project.getName(), GlobalVariables.ID_TO_PROJECT_MAP.get(-2).getName());
 
         // remove
-        dataRemover.removeProject(project);
-        GlobalVariables.ID_TO_PROJECT_MAP.remove(-2);
+        project.remove();
+        project.removeDatabase();
         assertFalse(dataReader.readAllProjects().contains(project));
         assertNull(GlobalVariables.ID_TO_PROJECT_MAP.get(-2));
     }
@@ -42,23 +41,23 @@ class DatabaseConnectionTest {
     @Test
     void testDataTags() {
         Tag tag = new Tag(-2, "JUnitTest", null, Color.BLUE);
-        GlobalVariables.ID_TO_TAG_MAP.remove(-2);
+        tag.writeDatabase();
 
         // write
-        dataWriter.writeTag(tag);
         assertTrue(dataReader.readAllTags().contains(tag));
+        dataReader.readInTagsToGlobal();
         assertTrue(GlobalVariables.ID_TO_TAG_MAP.containsValue(tag));
 
         // update
         tag.setName("JUnitTestUpdate");
-        dataWriter.updateTag(tag);
-        GlobalVariables.ID_TO_TAG_MAP.remove(-2);
+        tag.updateDatabase();
         assertTrue(dataReader.readAllTags().contains(tag));
+        dataReader.readInTagsToGlobal();
         assertEquals(tag.getName(), GlobalVariables.ID_TO_TAG_MAP.get(-2).getName());
 
         // remove
-        dataRemover.removeTag(tag);
-        GlobalVariables.ID_TO_TAG_MAP.remove(-2);
+        tag.remove();
+        tag.removeDatabase();
         assertFalse(dataReader.readAllTags().contains(tag));
         assertNull(GlobalVariables.ID_TO_TAG_MAP.get(-2));
     }
@@ -66,23 +65,23 @@ class DatabaseConnectionTest {
     @Test
     void testDataTasks() {
         Task task = new Task(-2, "JUnitTest", null);
-        GlobalVariables.ID_TO_TASK_MAP.remove(-2);
+        task.writeDatabase();
 
         // write
-        dataWriter.writeTask(task);
         assertTrue(dataReader.readAllTasks().contains(task));
+        dataReader.readInTasksToGlobal();
         assertTrue(GlobalVariables.ID_TO_TASK_MAP.containsValue(task));
 
         // update
         task.setName("JUnitTestUpdate");
-        dataWriter.updateTask(task);
-        GlobalVariables.ID_TO_TASK_MAP.remove(-2);
+        task.updateDatabase();
         assertTrue(dataReader.readAllTasks().contains(task));
+        dataReader.readInTasksToGlobal();
         assertEquals(task.getName(), GlobalVariables.ID_TO_TASK_MAP.get(-2).getName());
 
         // remove
-        dataRemover.removeTask(task);
-        GlobalVariables.ID_TO_TASK_MAP.remove(-2);
+        task.remove();
+        task.removeDatabase();
         assertFalse(dataReader.readAllTasks().contains(task));
         assertNull(GlobalVariables.ID_TO_TASK_MAP.get(-2));
 
@@ -91,25 +90,25 @@ class DatabaseConnectionTest {
     @Test
     void testDataTimeIntervals() {
         TimeInterval timeInterval = new TimeInterval(-2, new Task(-2, "JUnitTest", null));
-        GlobalVariables.ID_TO_TIME_INTERVAL_MAP.remove(-2);
         timeInterval.start();
         timeInterval.stop();
 
         // write
-        dataWriter.writeTimeInterval(timeInterval);
         assertTrue(dataReader.readAllTimeIntervals().contains(timeInterval));
+        dataReader.readInAllToGlobal();
         assertTrue(GlobalVariables.ID_TO_TIME_INTERVAL_MAP.containsValue(timeInterval));
 
         // update
         timeInterval.setStartTime(LocalDateTime.now());
-        dataWriter.updateTimeInterval(timeInterval);
-        GlobalVariables.ID_TO_TIME_INTERVAL_MAP.remove(-2);
+        timeInterval.updateDatabase();
         assertTrue(dataReader.readAllTimeIntervals().contains(timeInterval));
+        dataReader.readInAllToGlobal();
         assertEquals(timeInterval.getStartTime(), GlobalVariables.ID_TO_TIME_INTERVAL_MAP.get(-2).getStartTime());
 
         // remove
-        dataRemover.removeTimeInterval(timeInterval);
-        GlobalVariables.ID_TO_TIME_INTERVAL_MAP.remove(-2);
+        timeInterval.getTask().remove();
+        timeInterval.remove();
+        timeInterval.removeDatabase();
         assertFalse(dataReader.readAllTimeIntervals().contains(timeInterval));
         assertNull(GlobalVariables.ID_TO_TIME_INTERVAL_MAP.get(-2));
     }
@@ -117,7 +116,7 @@ class DatabaseConnectionTest {
     @Test
     void readMaxIDs() {
 
-        dataReader.readMaxIDs();
+        dataReader.readInMaxIDsGlobal();
         System.out.println("Read Max IDs");
 
         int projectID = GlobalVariables.getLastProjectId() + 1;
@@ -145,7 +144,7 @@ class DatabaseConnectionTest {
         GlobalVariables.setTimeIntervalId(timeIntervalID);
         System.out.println("Reset Max IDs");
 
-        dataReader.readMaxIDs();
+        dataReader.readInMaxIDsGlobal();
 
         assertEquals(-1, GlobalVariables.getLastProjectId());
         assertEquals(-1, GlobalVariables.getLastTagId());

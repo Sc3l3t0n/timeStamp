@@ -1,23 +1,24 @@
 package timetracker.data;
 
+import timetracker.API.DataRemover;
+import timetracker.API.DataWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This class represents a project.
+ * A project is a {@link DataType}
  * A project has a name, a description, a parent, subprojects, tasks and tags.
+ * A project can be written to the database, updated in the database and removed from the database.
+ * A project can be added to the global variables, removed from the global variables and updated in the global variables.
  *
  * @author Marlon Rosenberg
- * @version 0.2
+ * @version 0.9
  */
-public class Project {
+public class Project extends DataType{
 
     // Attributes
-
-    /**
-     * The unique ID of the project.
-     */
-    private final int projectID;
 
     /**
      * The name of the project.
@@ -53,21 +54,21 @@ public class Project {
 
     /**
      * Creates a new project with the given name, description, parent and tags.
+     * If parent is not null, the project will be added to the parent's subprojects.
      *
-     * @param projectID The unique id of the project.
+     * @param id The unique id of the project.
      * @param name The name of the project.
      * @param description The description of the project.
      * @param parent The parent of the project.
      */
-    public Project(int projectID, String name,String description, Project parent) {
-        this.projectID = projectID;
-        GlobalVariables.ID_TO_PROJECT_MAP.put(projectID, this);
-        GlobalVariables.NAME_TO_PROJECT_MAP.put(name, this);
+    public Project(int id, String name,String description, Project parent) {
+        super(id);
+
+        if (parent != null) parent.addSubProject(this);
 
         this.name = name;
         this.description = description;
         this.parent = parent;
-        if (parent != null) parent.addSubProject(this);
 
         this.tags = new ArrayList<>();
 
@@ -75,16 +76,62 @@ public class Project {
         this.tasks = new ArrayList<>();
     }
 
-    // Setter and Getter
-
     /**
-     * Returns the unique ID of the project.
-     *
-     * @return The unique ID of the project.
+     * Removes the project from the global variables but not from the database.
+     * Removes the project from parent if it has one.
+     * Removes the project as parent from all subprojects.
      */
-    public int getProjectID() {
-        return projectID;
+    @Override
+    public void remove() {
+        if (parent != null) parent.removeSubProject(this);
+        for (Project subProject : subProjects) {
+            subProject.setParent(null);
+        }
+        for (Task task : tasks) {
+            task.setProject(null);
+        }
+        removeGlobal();
     }
+
+    // Global methods
+
+    @Override
+    public void addGlobal() {
+        GlobalVariables.ID_TO_PROJECT_MAP.put(getID(), this);
+        GlobalVariables.NAME_TO_PROJECT_MAP.put(name, this);
+    }
+
+    @Override
+    public void removeGlobal() {
+        GlobalVariables.ID_TO_PROJECT_MAP.remove(getID());
+        GlobalVariables.NAME_TO_PROJECT_MAP.remove(name);
+    }
+
+    // Database methods
+
+    @Override
+    public void writeDatabase() {
+        DataWriter dataWriter = new DataWriter();
+        dataWriter.writeProject(this);
+        dataWriter.close();
+    }
+
+    @Override
+    public void updateDatabase() {
+        DataWriter dataWriter = new DataWriter();
+        dataWriter.updateProject(this);
+        dataWriter.close();
+    }
+
+    @Override
+    public void removeDatabase() {
+        DataRemover dataRemover = new DataRemover();
+        dataRemover.removeProject(this);
+        dataRemover.close();
+    }
+
+
+    // Setter and Getter
 
     /**
      * Returns the name of the project.
@@ -97,11 +144,15 @@ public class Project {
 
     /**
      * Sets the name of the project.
+     * Removes the old name from the name to project map and adds the new name to the map.
+     * See {@link GlobalVariables#NAME_TO_PROJECT_MAP}.
      *
      * @param name The name of the project.
      */
     public void setName(String name) {
+        GlobalVariables.NAME_TO_PROJECT_MAP.remove(this.name);
         this.name = name;
+        GlobalVariables.NAME_TO_PROJECT_MAP.put(name, this);
     }
 
     /**
@@ -138,6 +189,33 @@ public class Project {
      */
     public void setParent(Project parent) {
         this.parent = parent;
+    }
+
+    /**
+     * Returns the tags of the project.
+     *
+     * @return The tags of the project.
+     */
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * Returns the subprojects of the project.
+     *
+     * @return The subprojects of the project.
+     */
+    public List<Project> getSubProjects() {
+        return subProjects;
+    }
+
+    /**
+     * Returns the tasks of the project.
+     *
+     * @return The tasks of the project.
+     */
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     // Methods
@@ -202,17 +280,9 @@ public class Project {
     // Utility
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Project project = (Project) o;
-        return projectID == project.projectID;
-    }
-
-    @Override
     public String toString() {
         return "Project{" +
-                "projectID=" + projectID +
+                "projectID=" + getID() +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", parent=" + parent +
