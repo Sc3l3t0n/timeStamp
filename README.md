@@ -1,7 +1,7 @@
-![Status](https://img.shields.io/badge/Status-early_development-yellow) ![Version](https://img.shields.io/badge/Version-0.1.0-orange) ![Testing](https://img.shields.io/badge/Testing-passing_5/5-darl_green) [![wakatime](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934.svg)](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934)
+![Status](https://img.shields.io/badge/Status-early_development-yellow) ![Version](https://img.shields.io/badge/Version-0.2.0-orange) ![Testing](https://img.shields.io/badge/Testing-passing_5/5-darl_green) [![wakatime](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934.svg)](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934)
 # timeStemp - A Time Tracker App
 
-timeStemp is a time tracker app developed as a personal project to practice and enhance programming skills. 
+timeStemp is a time tracker app developed as a personal project to practice and enhance programming skills.
 The app allows users to efficiently track and manage their time for various activities or projects, providing a valuable tool for productivity and time management.
 
 # Table of Contents
@@ -21,6 +21,11 @@ As a personal project, timeStemp serves as a sandbox for honing programming skil
 
 # Features
 
+At the moment there is only a CLI prototype with the feature to (Probably broken at the moment):
+- Track your task
+- Restart a task
+- List all tasks
+
 These features are initially planned to be implemented in the course of development:
 
 - **Task Tracking:** Record tasks and activities, including start and end times, to keep track of how you spend your time.
@@ -32,6 +37,8 @@ Please note that the feature list may expand as the project evolves and more fun
 
 # Technologies
 The timeStemp app is developed using Java, utilizing its robust object-oriented programming capabilities. It may incorporate additional libraries or frameworks to enhance functionality.
+
+Its using [SQLite](https://www.sqlite.org/index.html) for saving data.
 
 ## Readme Generation
 
