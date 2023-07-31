@@ -11,7 +11,7 @@ import timetracker.data.*;
  * The DataWriter connects to the database and writes or updates the data.
  *
  * @author Marlon Rosenberg
- * @version 0.3
+ * @version 0.4
  */
 public class DataWriter extends DatabaseConnection{
 
@@ -41,11 +41,11 @@ public class DataWriter extends DatabaseConnection{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, project.getProjectID());
+            preparedStatement.setInt(1, project.getID());
             preparedStatement.setString(2, project.getName());
             preparedStatement.setString(3, project.getDescription());
             if (project.getParent() != null)
-                preparedStatement.setInt(4, project.getParent().getProjectID());
+                preparedStatement.setInt(4, project.getParent().getID());
             else
                 preparedStatement.setInt(4, -1);
 
@@ -62,6 +62,7 @@ public class DataWriter extends DatabaseConnection{
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
         }
+        updateProjectID();
     }
 
     /**
@@ -83,12 +84,12 @@ public class DataWriter extends DatabaseConnection{
             preparedStatement.setString(1, project.getName());
             preparedStatement.setString(2, project.getDescription());
             if (project.getParent() != null)
-                preparedStatement.setInt(3, project.getParent().getProjectID());
+                preparedStatement.setInt(3, project.getParent().getID());
             else
                 preparedStatement.setInt(3, -1);
 
 
-            preparedStatement.setInt(4, project.getProjectID());
+            preparedStatement.setInt(4, project.getID());
 
             // check if something was changed
             int rowsInserted = preparedStatement.executeUpdate();
@@ -103,6 +104,7 @@ public class DataWriter extends DatabaseConnection{
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
         }
+        updateProjectID();
     }
 
     // Tag
@@ -122,10 +124,10 @@ public class DataWriter extends DatabaseConnection{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, tag.getTagID());
+            preparedStatement.setInt(1, tag.getID());
             preparedStatement.setString(2, tag.getName());
             if (tag.getParent() != null)
-                preparedStatement.setInt(3, tag.getParent().getTagID());
+                preparedStatement.setInt(3, tag.getParent().getID());
             else
                 preparedStatement.setInt(3, -1);
 
@@ -145,7 +147,7 @@ public class DataWriter extends DatabaseConnection{
             System.err.println("Error when connecting to the database!");
             throw new RuntimeException(e);
         }
-
+        updateTagID();
     }
 
     /**
@@ -166,13 +168,13 @@ public class DataWriter extends DatabaseConnection{
             preparedStatement.setString(1, tag.getName());
             // check if tag has a parent
             if (tag.getParent() != null)
-                preparedStatement.setInt(2, tag.getParent().getTagID());
+                preparedStatement.setInt(2, tag.getParent().getID());
             else
                 preparedStatement.setInt(2, -1);
 
             preparedStatement.setString(3, tag.getColor().toString());
 
-            preparedStatement.setInt(4, tag.getTagID());
+            preparedStatement.setInt(4, tag.getID());
 
             // check if something was changed
             int rowsInserted = preparedStatement.executeUpdate();
@@ -188,7 +190,7 @@ public class DataWriter extends DatabaseConnection{
             System.err.println("Error when connecting to the database!");
             throw new RuntimeException(e);
         }
-
+        updateTagID();
     }
 
     // Task
@@ -208,11 +210,11 @@ public class DataWriter extends DatabaseConnection{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, task.getTaskID());
+            preparedStatement.setInt(1, task.getID());
             preparedStatement.setString(2, task.getName());
 
             if (task.getProject() != null)
-                preparedStatement.setInt(3, task.getProject().getProjectID());
+                preparedStatement.setInt(3, task.getProject().getID());
             else
                 preparedStatement.setInt(3, -1);
 
@@ -229,6 +231,7 @@ public class DataWriter extends DatabaseConnection{
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
         }
+        updateTaskID();
     }
 
     /**
@@ -248,11 +251,11 @@ public class DataWriter extends DatabaseConnection{
 
             preparedStatement.setString(1, task.getName());
             if (task.getProject() != null)
-                preparedStatement.setInt(2, task.getProject().getProjectID());
+                preparedStatement.setInt(2, task.getProject().getID());
             else
                 preparedStatement.setInt(2, -1);
 
-            preparedStatement.setInt(3, task.getTaskID());
+            preparedStatement.setInt(3, task.getID());
 
             // check if something was changed
             int rowsInserted = preparedStatement.executeUpdate();
@@ -267,6 +270,7 @@ public class DataWriter extends DatabaseConnection{
         } catch (SQLException e) {
             System.err.println("Error when connecting to the database!");
         }
+        updateTaskID();
     }
 
     // TimeIntervals
@@ -280,14 +284,17 @@ public class DataWriter extends DatabaseConnection{
      */
     public void writeTimeInterval(TimeInterval timeInterval) {
 
+        if (timeInterval.getEndTime() == null)
+            throw new IllegalArgumentException("The time interval must have an end time!");
+
         // SQL INSERT statement
         String sql = "INSERT INTO timeintervals(interval_id, task_id, start_time, end_time) VALUES(?,?,?,?)";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, timeInterval.getIntervalID());
-            preparedStatement.setInt(2, timeInterval.getTask().getTaskID());
+            preparedStatement.setInt(1, timeInterval.getID());
+            preparedStatement.setInt(2, timeInterval.getTask().getID());
             preparedStatement.setString(3, timeInterval.getStartTime().toString());
             preparedStatement.setString(4, timeInterval.getEndTime().toString());
 
@@ -304,6 +311,7 @@ public class DataWriter extends DatabaseConnection{
             System.err.println("Error when connecting to the database!");
             throw new RuntimeException(e);
         }
+        updateIntervalID();
     }
 
     /**
@@ -321,10 +329,10 @@ public class DataWriter extends DatabaseConnection{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, timeInterval.getTask().getTaskID());
+            preparedStatement.setInt(1, timeInterval.getTask().getID());
             preparedStatement.setString(2, timeInterval.getStartTime().toString());
             preparedStatement.setString(3, timeInterval.getEndTime().toString());
-            preparedStatement.setInt(4, timeInterval.getIntervalID());
+            preparedStatement.setInt(4, timeInterval.getID());
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
@@ -339,6 +347,7 @@ public class DataWriter extends DatabaseConnection{
             System.err.println("Error when connecting to the database!");
             throw new RuntimeException(e);
         }
+        updateIntervalID();
     }
 
     // MaxIDs
