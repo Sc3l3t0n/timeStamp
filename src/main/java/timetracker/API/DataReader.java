@@ -27,6 +27,65 @@ public class DataReader extends DatabaseConnection {
         super();
     }
 
+    // Global methods
+
+    /**
+     * Reads all data from the database and writes it to the global variables.
+     */
+    public void readInAllToGlobal() {
+
+        // Order is important
+        readAllProjects().forEach(Project::addGlobal);
+        readAllTags().forEach(Tag::addGlobal);
+        readAllTasks().forEach(Task::addGlobal);
+        readAllTimeIntervals().forEach(TimeInterval::addGlobal);
+        readInMaxIDsGlobal();
+    }
+
+    /**
+     * Reads all projects from the database into the global variables.
+     * Use with caution, only use for testing purposes.
+     * Use {@link DataReader#readInAllToGlobal()} instead.
+     */
+    @Deprecated
+    public void readInProjectsToGlobal() {
+        readAllProjects().forEach(Project::addGlobal);
+        readInMaxIDsGlobal();
+    }
+
+    /**
+     * Reads all tags from the database into the global variables.
+     * Use with caution, only use for testing purposes.
+     * Use {@link DataReader#readInAllToGlobal()} instead.
+     */
+    @Deprecated
+    public void readInTagsToGlobal() {
+        readAllTags().forEach(Tag::addGlobal);
+        readInMaxIDsGlobal();
+    }
+
+    /**
+     * Reads all tasks from the database into the global variables.
+     * Use with caution, only use for testing purposes.
+     * Use {@link DataReader#readInAllToGlobal()} instead.
+     */
+    @Deprecated
+    public void readInTasksToGlobal() {
+        readAllTasks().forEach(Task::addGlobal);
+        readInMaxIDsGlobal();
+    }
+
+    /**
+     * Reads all time intervals from the database into the global variables.
+     * Use with caution, only use for testing purposes.
+     * Use {@link DataReader#readInAllToGlobal()} instead.
+     */
+    @Deprecated
+    public void readInTimeIntervalsToGlobal() {
+        readAllTimeIntervals().forEach(TimeInterval::addGlobal);
+        readInMaxIDsGlobal();
+    }
+
     // Projects
 
     /**
@@ -192,7 +251,7 @@ public class DataReader extends DatabaseConnection {
      *
      * @throws RuntimeException if the DataReader could not read the max IDs from the database.
      */
-    public void readMaxIDs() {
+    public void readInMaxIDsGlobal() {
 
         // interval_id, project_id, tag_id, task_id
         String sql = "SELECT data_type, max_id FROM MaxIDs ORDER BY data_type";
