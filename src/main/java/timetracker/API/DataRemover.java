@@ -42,7 +42,7 @@ public class DataRemover extends DatabaseConnection{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, project.getProjectID());
+            preparedStatement.setInt(1, project.getID());
 
             int rowRemoved = preparedStatement.executeUpdate();
 
@@ -74,7 +74,7 @@ public class DataRemover extends DatabaseConnection{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, tag.getTagID());
+            preparedStatement.setInt(1, tag.getID());
 
             int rowRemoved = preparedStatement.executeUpdate();
 
@@ -106,7 +106,7 @@ public class DataRemover extends DatabaseConnection{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, task.getTaskID());
+            preparedStatement.setInt(1, task.getID());
 
             int rowRemoved = preparedStatement.executeUpdate();
 
@@ -138,7 +138,7 @@ public class DataRemover extends DatabaseConnection{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, timeInterval.getIntervalID());
+            preparedStatement.setInt(1, timeInterval.getID());
 
             int rowRemoved = preparedStatement.executeUpdate();
 
