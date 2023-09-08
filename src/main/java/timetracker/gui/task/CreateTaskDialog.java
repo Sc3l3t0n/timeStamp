@@ -111,12 +111,16 @@ public class CreateTaskDialog extends JDialog {
                 } else {
                     Tag newTag = new Tag(GlobalVariables.getNextTagId(), t, null, null); //TODO: Add color functionality
                     newTag.addGlobal();
-                    //newTag.writeDatabase(); TODO: Enable database writing
+                    newTag.writeDatabase();
                     task.addTag(newTag);
                 }
             }
         }
         task.addGlobal();
-        // task.writeDatabase(); TODO: Enable database writing
+        task.writeDatabase();
+    }
+
+    public Task getTask() {
+        return task;
     }
 }
