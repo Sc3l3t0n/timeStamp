@@ -1,6 +1,5 @@
 package timetracker.data;
 
-import timetracker.API.DataReader;
 import timetracker.API.DataRemover;
 import timetracker.API.DataWriter;
 
@@ -264,6 +263,14 @@ public class Task extends DataType{
     }
 
     // Utility
+
+    public String getTagsToString() {
+        StringBuilder s = new StringBuilder();
+        for (Tag tag : tags) {
+            s.append(tag.getName()).append(",");
+        }
+        return s.toString();
+    }
 
     @Override
     public String toString() {
