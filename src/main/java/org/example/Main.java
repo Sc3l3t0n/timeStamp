@@ -12,14 +12,7 @@ import timetracker.gui.MainForm;
  */
 public class Main {
     public static void main(String[] args){
-
-        // Create test task
-        Task task1 = new Task(GlobalVariables.getNextTaskId(), "This is a test task",  null);
-        task1.addGlobal();
-
         Application application = new Application();
-
         // CLI cli = new CLI();
-
     }
 }
