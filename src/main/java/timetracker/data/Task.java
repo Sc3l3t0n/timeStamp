@@ -267,11 +267,6 @@ public class Task extends DataType{
 
     @Override
     public String toString() {
-        return "Task{" +
-                "taskID=" + getID() +
-                ", name='" + name + '\'' +
-                ", project=" + project +
-                ", timeIntervals=" + timeIntervals +
-                '}';
+        return name;
     }
 }

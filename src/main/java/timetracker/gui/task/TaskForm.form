@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="timetracker.gui.TaskForm">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="timetracker.gui.task.TaskForm">
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
@@ -23,14 +23,28 @@
             </constraints>
             <properties/>
           </component>
-          <grid id="1a750" binding="jPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="1a750" binding="taskView" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <splitpane position="right"/>
             </constraints>
             <properties/>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="f62e6" class="javax.swing.JLabel" binding="taskName">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value=""/>
+                </properties>
+              </component>
+              <vspacer id="d062a">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                </constraints>
+              </vspacer>
+            </children>
           </grid>
         </children>
       </splitpane>
@@ -46,22 +60,22 @@
           <hspacer id="94f0">
             <constraints/>
           </hspacer>
-          <component id="28e9e" class="javax.swing.JButton" binding="button1" default-binding="true">
+          <component id="28e9e" class="javax.swing.JButton" binding="createButton">
             <constraints/>
             <properties>
-              <text value="Button"/>
+              <text value="Create"/>
             </properties>
           </component>
-          <component id="d039e" class="javax.swing.JButton" binding="button2" default-binding="true">
+          <component id="d039e" class="javax.swing.JButton" binding="deleteButton">
             <constraints/>
             <properties>
-              <text value="Button"/>
+              <text value="Delete"/>
             </properties>
           </component>
-          <component id="d2898" class="javax.swing.JButton" binding="button3" default-binding="true">
+          <component id="d2898" class="javax.swing.JButton" binding="backButton">
             <constraints/>
             <properties>
-              <text value="Button"/>
+              <text value="Back"/>
             </properties>
           </component>
           <hspacer id="92c24">

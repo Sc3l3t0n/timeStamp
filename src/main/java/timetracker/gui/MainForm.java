@@ -1,5 +1,7 @@
 package timetracker.gui;
 
+import timetracker.gui.task.TaskForm;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +21,7 @@ public class MainForm extends JFrame{
         this.setSize(700, 1000);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
+        setLocationRelativeTo(null);
         jbTasks.addActionListener(new ActionListener() {
             /**
              * Invoked when an action occurs.
@@ -36,7 +39,7 @@ public class MainForm extends JFrame{
 
     private void openTaskForm() {
         TaskForm taskForm = new TaskForm();
-        taskForm.setVisible(true);
+        this.dispose();
     }
 
 
