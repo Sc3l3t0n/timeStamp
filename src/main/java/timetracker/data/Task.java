@@ -162,7 +162,12 @@ public class Task extends DataType{
     public Duration getDuration() {
     	Duration duration = Duration.ZERO;
     	for (TimeInterval timeInterval : timeIntervals) {
-    		duration = duration.plus(timeInterval.getDuration());
+            try {
+                duration = duration.plus(timeInterval.getDuration());
+            } catch (NullPointerException e) {
+                // Is ok, just means that the time interval has not ended yet
+                System.out.println("Time interval has not ended yet");
+            }
     	}
     	return duration;
     }
@@ -215,6 +220,15 @@ public class Task extends DataType{
     }
 
     /**
+     * Returns the current time interval of the task.
+     *
+     * @return The current time interval of the task.
+     */
+    public TimeInterval getCurrentInterval() {
+        return currentInterval;
+    }
+
+    /**
      * Returns the tags of the task.
      *
      * @return The tags of the task.
@@ -262,8 +276,22 @@ public class Task extends DataType{
         this.tags.remove(tag);
     }
 
+    /**
+     * Returns true if the task is running, false otherwise.
+     *
+     * @return True if the task is running, false otherwise.
+     */
+    public boolean isRunning() {
+        return currentInterval != null;
+    }
+
     // Utility
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return A string representation of the task.
+     */
     public String getTagsToString() {
         StringBuilder s = new StringBuilder();
         for (Tag tag : tags) {
