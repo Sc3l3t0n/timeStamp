@@ -92,6 +92,7 @@ class DatabaseConnectionTest {
         TimeInterval timeInterval = new TimeInterval(-2, new Task(-2, "JUnitTest", null));
         timeInterval.start();
         timeInterval.stop();
+        timeInterval.writeDatabase();
 
         // write
         assertTrue(dataReader.readAllTimeIntervals().contains(timeInterval));
