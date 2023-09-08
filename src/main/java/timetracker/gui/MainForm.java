@@ -15,7 +15,7 @@ public class MainForm extends JFrame{
     private JLabel lTitel;
 
     public MainForm() {
-        super("TimeTracker");
+        super("timeStamp");
         this.setContentPane(panel1);
         this.setMinimumSize(new Dimension(500,500));
         this.setSize(700, 1000);

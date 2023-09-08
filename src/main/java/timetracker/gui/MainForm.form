@@ -120,7 +120,7 @@
               <font name="Bernard MT Condensed" size="72" style="1"/>
               <foreground color="-11905630"/>
               <horizontalTextPosition value="0"/>
-              <text value="timeStemp"/>
+              <text value="timeStamp"/>
             </properties>
           </component>
           <hspacer id="94362">
