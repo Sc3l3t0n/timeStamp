@@ -4,19 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba61e697-fab8-41a2-9538-270e0983d544" name="Changes" comment="feat: Add a maxID system (#4)&#10;&#10;Add a maxID system to the database and DataWriter.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/API/DataReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/console/cli.java" afterDir="false" />
+    <list default="true" id="ba61e697-fab8-41a2-9538-270e0983d544" name="Changes" comment="fix:">
+      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/gui/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/gui/MainForm.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/gui/MainForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/gui/TaskForm.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/timetracker/gui/TaskForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/API/DataCollector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/API/DataWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/API/DataWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/GlobalVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/GlobalVariables.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/data/TimeInterval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/data/TimeInterval.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/timetracker/console/CLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/timetracker/console/CLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/timetracker/API/DatabaseConnectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/timetracker/API/DatabaseConnectionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +26,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -41,6 +43,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2T9uy77GRCHGw6LlGtNIkHIBNu3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -53,15 +58,21 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/marlo/Documents/Programmieren/Java/timeStemp/database.sqlite",
+    "last_opened_file_path": "C:/Users/marlo/Documents/Programmieren/Java/timeStemp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "two.files.diff.last.used.file": "C:/Users/marlo/Documents/Programmieren/Java/timeStemp/database.sqlite",
     "vue.rearranger.settings.migration": "true"
   },
@@ -75,6 +86,90 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\marlo\Documents\Programmieren\Java\timeStemp\src\main\resources" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="timetracker.data" />
+      <recent name="timetracker.API" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="timeStemp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in timeStemp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="timeStemp" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="timeStemp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="timetracker.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="timetracker.data" />
+      <option name="MAIN_CLASS_NAME" value="timetracker.data.ProjectTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TagTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="timeStemp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="timetracker.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="timetracker.data" />
+      <option name="MAIN_CLASS_NAME" value="timetracker.data.TagTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="timeStemp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="timetracker.data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="timetracker.data" />
+      <option name="MAIN_CLASS_NAME" value="timetracker.data.TaskTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.All in timeStemp" />
+        <item itemvalue="JUnit.TaskTest" />
+        <item itemvalue="JUnit.TagTest" />
+        <item itemvalue="JUnit.ProjectTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -88,7 +183,18 @@
       <workItem from="1690477005745" duration="3136000" />
       <workItem from="1690480163125" duration="5245000" />
       <workItem from="1690485698851" duration="5200000" />
-      <workItem from="1690492425242" duration="8697000" />
+      <workItem from="1690492425242" duration="9023000" />
+      <workItem from="1690548559470" duration="5015000" />
+      <workItem from="1690562801549" duration="11350000" />
+      <workItem from="1690577121479" duration="5381000" />
+      <workItem from="1690583129366" duration="3076000" />
+      <workItem from="1690719085250" duration="3586000" />
+      <workItem from="1690732229500" duration="19885000" />
+      <workItem from="1694166515403" duration="110000" />
+      <workItem from="1694166663037" duration="342000" />
+      <workItem from="1694168642521" duration="591000" />
+      <workItem from="1694169256057" duration="49000" />
+      <workItem from="1694178809275" duration="822000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -178,7 +284,167 @@
       <option name="project" value="LOCAL" />
       <updated>1690498154897</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat: Add reading from the database (#2)">
+      <option name="closed" value="true" />
+      <created>1690501163506</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1690501163506</updated>
+    </task>
+    <task id="LOCAL-00013" summary="docs: Added missing Javadoc">
+      <option name="closed" value="true" />
+      <created>1690501397451</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1690501397451</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix: toString method Stackoverflow error">
+      <option name="closed" value="true" />
+      <created>1690550175130</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1690550175130</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix: toString method Stackoverflow error">
+      <option name="closed" value="true" />
+      <created>1690550416935</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1690550416935</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat: Implement DataRemover&#10;&#10;Implement DataRemover to remove data from the database">
+      <option name="closed" value="true" />
+      <created>1690550503623</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1690550503623</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor: Remove unnecessary lines in constructor">
+      <option name="closed" value="true" />
+      <created>1690550614940</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1690550614940</updated>
+    </task>
+    <task id="LOCAL-00018" summary="refactor: Refactor the API to Java's object-oriented programming concept (#6)">
+      <option name="closed" value="true" />
+      <created>1690563860346</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1690563860346</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat: Add equals functions">
+      <option name="closed" value="true" />
+      <created>1690573110193</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1690573110193</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: Add first JUnitTests&#10;&#10;Fix of typo and id-setup in DataWriter">
+      <option name="closed" value="true" />
+      <created>1690573930455</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1690573930455</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat: Add name to datatype map">
+      <option name="closed" value="true" />
+      <created>1690583563883</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1690583563883</updated>
+    </task>
+    <task id="LOCAL-00022" summary="refactor: Change ID to datatype Map name">
+      <option name="closed" value="true" />
+      <created>1690583758386</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1690583758386</updated>
+    </task>
+    <task id="LOCAL-00023" summary="test: Add unit test for DatabaseConnection">
+      <option name="closed" value="true" />
+      <created>1690583800148</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1690583800148</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: Add methods to update IDs individual to the database">
+      <option name="closed" value="true" />
+      <created>1690583848290</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1690583848290</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat: Add first cli prototype&#10;&#10;Only Tasks are implemented yet">
+      <option name="closed" value="true" />
+      <created>1690586176098</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1690586176098</updated>
+    </task>
+    <task id="LOCAL-00026" summary="refactor: Refactor every Datatype (#9)&#10;&#10;- Add a new abstract DataType class&#10;- Stricter use case for methods introduced&#10;- DataTypes now connect to the database via DataConnections&#10;- Data types are no longer added directly to the global variables. They can now manually be added&#10;- Renaming of some variables and functions&#10;- Add new Tests for all DataTypes&#10;- Task class controls now TimeIntervals (#8)">
+      <option name="closed" value="true" />
+      <created>1690762976785</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1690762976785</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix: DataWriter now updates maxIDs&#10;&#10;- minor fixes for DataType overhaul">
+      <option name="closed" value="true" />
+      <created>1690763160108</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1690763160108</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fix: minor fixes for DataType overhaul">
+      <option name="closed" value="true" />
+      <created>1690763177565</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1690763177565</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: Add only read and add to global support &#10;&#10;- Now only the data from the database can be read specifically&#10;- Additional functions to add the data directly to the global variables have been added.&#10;- minor fixes for DataType overhaul">
+      <option name="closed" value="true" />
+      <created>1690763396128</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1690763396128</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix: close function is public now">
+      <option name="closed" value="true" />
+      <created>1690763435818</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1690763435818</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Update README.md">
+      <option name="closed" value="true" />
+      <created>1690763570306</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1690763570306</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,16 +462,55 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial Commit" />
-    <MESSAGE value="Added Data Types" />
-    <MESSAGE value="Removed wrong README.md" />
-    <MESSAGE value="Feat: First iteration of data-bank connectivity" />
     <MESSAGE value="Feat: Added update functions to DataWriter" />
     <MESSAGE value="Fix: cleaned up main class" />
     <MESSAGE value="Fix: Fixed some warnings" />
     <MESSAGE value="Fix: preparedStatement will now be closed" />
     <MESSAGE value="refactor: Refactor ID-system and add HashMaps of datatype&#10;&#10;In addition, children now add themselves to the parent objects" />
     <MESSAGE value="feat: Add a maxID system (#4)&#10;&#10;Add a maxID system to the database and DataWriter." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Add a maxID system (#4)&#10;&#10;Add a maxID system to the database and DataWriter." />
+    <MESSAGE value="feat: Add reading from the database (#2)" />
+    <MESSAGE value="docs: Added missing Javadoc" />
+    <MESSAGE value="fix: toString method Stackoverflow error" />
+    <MESSAGE value="feat: Implement DataRemover&#10;&#10;Implement DataRemover to remove data from the database" />
+    <MESSAGE value="refactor: Remove unnecessary lines in constructor" />
+    <MESSAGE value="refactor: Refactor the API to Java's object-oriented programming concept (#6)" />
+    <MESSAGE value="feat: Add equals functions" />
+    <MESSAGE value="feat: Add first JUnitTests&#10;&#10;Fix of typo and id-setup in DataWriter" />
+    <MESSAGE value="feat: Add name to datatype map" />
+    <MESSAGE value="refactor: Change ID to datatype Map name" />
+    <MESSAGE value="test: Add unit test for DatabaseConnection" />
+    <MESSAGE value="feat: Add methods to update IDs individual to the database" />
+    <MESSAGE value="feat: Add first cli prototype&#10;&#10;Only Tasks are implemented yet" />
+    <MESSAGE value="refactor: Refactor every Datatype (#9)&#10;&#10;- Add a new abstract DataType class&#10;- Stricter use case for methods introduced&#10;- DataTypes now connect to the database via DataConnections&#10;- Data types are no longer added directly to the global variables. They can now manually be added&#10;- Renaming of some variables and functions&#10;- Add new Tests for all DataTypes&#10;- Task class controls now TimeIntervals (#8)" />
+    <MESSAGE value="fix: DataWriter now updates maxIDs&#10;&#10;- minor fixes for DataType overhaul" />
+    <MESSAGE value="fix: minor fixes for DataType overhaul" />
+    <MESSAGE value="feat: Add only read and add to global support &#10;&#10;- Now only the data from the database can be read specifically&#10;- Additional functions to add the data directly to the global variables have been added.&#10;- minor fixes for DataType overhaul" />
+    <MESSAGE value="fix: close function is public now" />
+    <MESSAGE value="Update README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/timetracker/data/TaskTest.java</url>
+          <line>92</line>
+          <properties class="timetracker.data.TaskTest" method="TimeInterval">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
