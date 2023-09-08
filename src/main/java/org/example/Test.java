@@ -1,13 +1,12 @@
 package org.example;
 
 import timetracker.API.DataReader;
+import timetracker.API.DataRemover;
 import timetracker.API.DataWriter;
 import timetracker.data.*;
 
 import java.awt.*;
 import java.time.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class is used to test the API.
@@ -19,23 +18,23 @@ public class Test {
 
         Project project = new Project(GlobalVariables.getNextProjectId(), "Update", "An Example one", null);
 
-        // Task exampleTask = new Task(GlobalVariables.getNextTaskId(), "Update", project);
+        Task exampleTask = new Task(GlobalVariables.getNextTaskId(), "Update", project);
 
-        // TimeInterval timeInterval = new TimeInterval(GlobalVariables.getNextTimeIntervalId(), exampleTask);
+        TimeInterval timeInterval = new TimeInterval(GlobalVariables.getNextTimeIntervalId(), exampleTask);
 
-        // Tag tag = new Tag(GlobalVariables.getNextTagId(), "Update", null, Color.BLUE);
+        Tag tag = new Tag(GlobalVariables.getNextTagId(), "Update", null, Color.BLUE);
 
-        // timeInterval.start();
-        // timeInterval.stop();
+        timeInterval.start();
+        timeInterval.stop();
 
-        // timeInterval.setStartTime(LocalDateTime.parse("1990-07-27T22:36:14.959956900"));
+        timeInterval.setStartTime(LocalDateTime.parse("1990-07-27T22:36:14.959956900"));
 
         DataWriter dataWriter = new DataWriter();
 
-        // dataWriter.writeTask(exampleTask);
-        // dataWriter.writeProject(project);
-        // dataWriter.writeTimeIntervals(timeInterval);
-        // dataWriter.writeTag(tag);
+        dataWriter.writeTask(exampleTask);
+        dataWriter.writeProject(project);
+        dataWriter.writeTimeInterval(timeInterval);
+        dataWriter.writeTag(tag);
 
         //dataWriter.updateTask(exampleTask);
         //dataWriter.updateProject(project);
@@ -44,18 +43,22 @@ public class Test {
 
         DataReader dataReader = new DataReader();
 
-        // List<Task> tasks = dataReader.readAllTasks();
+        dataReader.readAllProjects().forEach(System.out::println);
+        dataReader.readAllTags().forEach(System.out::println);
+        dataReader.readAllTasks().forEach(System.out::println);
+        dataReader.readAllTimeIntervals().forEach(System.out::println);
 
-        // for(Task task : tasks) System.out.println(task);
+        DataRemover dataRemover = new DataRemover();
 
-        dataReader.readMaxIDs();
+        dataRemover.removeProject(project);
+        dataRemover.removeTag(tag);
+        dataRemover.removeTask(exampleTask);
+        dataRemover.removeTimeInterval(timeInterval);
 
-        System.out.println(GlobalVariables.getNextProjectId());
-        System.out.println(GlobalVariables.getNextTagId());
-        System.out.println(GlobalVariables.getNextTaskId());
-        System.out.println(GlobalVariables.getNextTimeIntervalId());
-
-
+        dataReader.readAllProjects().forEach(System.out::println);
+        dataReader.readAllTags().forEach(System.out::println);
+        dataReader.readAllTasks().forEach(System.out::println);
+        dataReader.readAllTimeIntervals().forEach(System.out::println);
 
     }
 
