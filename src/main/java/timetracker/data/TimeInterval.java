@@ -5,6 +5,7 @@ import timetracker.API.DataWriter;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * This class represents a time interval.
@@ -82,16 +83,19 @@ public class TimeInterval extends DataType{
         if (running) {
             this.endTime = LocalDateTime.now();
             running = false;
+            writeDatabase();
         }
     }
 
     /**
-     * Removes the time interval from the global variables but not from the database.
+     * Removes the time interval from the global variables and from the database.
      * The time interval will be removed from the task's time intervals.
      */
     @Override
     public void remove() {
         removeGlobal();
+        removeDatabase();
+        task.removeTimeInterval(this);
     }
 
     // Global methods
@@ -207,12 +211,9 @@ public class TimeInterval extends DataType{
 
     @Override
     public String toString() {
-        return "TimeInterval{" +
-                "intervalID=" + getID() +
-                ", task=" + task.getName() +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", play=" + running +
-                '}';
+        long s = getDuration().getSeconds();
+        return "Start: " + startTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")) +
+                ", End: " + endTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")) +
+                ", Duration: " + String.format("%d:%02d:%02d", s / 3600, (s % 3600) / 60, (s % 60));
     }
 }
