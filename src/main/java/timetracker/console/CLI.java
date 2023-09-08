@@ -89,7 +89,7 @@ public class CLI {
         dataReader.readAllTasks();
         dataReader.readAllTags();
         dataReader.readAllTimeIntervals();
-        dataReader.readMaxIDs();
+        dataReader.readInMaxIDsGlobal();
     }
 
     /**
