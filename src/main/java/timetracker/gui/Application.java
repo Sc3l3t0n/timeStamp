@@ -8,15 +8,6 @@ public class Application{
     public Application() {
         collect();
         MainForm mainForm = new MainForm();
-
-        // End all running tasks when the program is closed
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            GlobalVariables.ID_TO_TASK_MAP.forEach((id, task) -> {
-                if (task.isRunning()) {
-                    task.stop();
-                }
-            });
-        }));
     }
 
     private void collect() {
