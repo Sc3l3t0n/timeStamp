@@ -130,7 +130,7 @@
                 </constraints>
                 <properties>
                   <text value=""/>
-                  <toolTipText value="Use space as  separator"/>
+                  <toolTipText value="Use # in front of tags"/>
                 </properties>
               </component>
             </children>

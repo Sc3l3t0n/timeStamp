@@ -7,6 +7,8 @@ import timetracker.data.Task;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Dialog for creating a new task.
@@ -104,7 +106,10 @@ public class CreateTaskDialog extends JDialog {
 
         // Tags
         if (!tag.isEmpty()) {
-            String[] tags = tag.split(" ");
+            ArrayList<String> tags = new ArrayList<>(Arrays.asList(tag.split("#")));
+            tags.remove(0);
+            tags.replaceAll(String::trim);
+
             for (String t : tags) {
                 if (GlobalVariables.NAME_TO_TAG_MAP.containsKey(t)) {
                     task.addTag(GlobalVariables.NAME_TO_TAG_MAP.get(t));

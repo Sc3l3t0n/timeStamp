@@ -7,6 +7,8 @@ import timetracker.data.Task;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EditTaskDialog extends JDialog {
@@ -96,28 +98,28 @@ public class EditTaskDialog extends JDialog {
             project.addTask(task);
         }
 
+        List<Tag> taskTags = task.getTags();
+        ArrayList<String> tags = new ArrayList<>(Arrays.asList(tagTextField.getText().split("#")));
+        if (!tags.isEmpty()) tags.remove(0);
+        tags.replaceAll(String::trim);
 
-        List<Tag> tags = task.getTags();
-
-        // Remove tags that are not in the text field anymore
-        for (Tag tag : tags){
-            if (!tagTextField.getText().contains(tag.getName())){
+        // Remove taskTags that are not in the text field anymore
+        for (Tag tag : taskTags){
+            if (!tags.contains(tag.getName())){
                 task.removeTag(tag);
             }
         }
 
-
-
-        // Add tags that are in the text field but not in the task
+        // Add taskTags that are in the text field but not in the task
         if (!tagTextField.getText().isEmpty()) {
-            for (String tag : tagTextField.getText().split(" ")) {
+            for (String tag : tags) {
                 if (!GlobalVariables.NAME_TO_TAG_MAP.containsKey(tag)) {
                     Tag newTag = new Tag(GlobalVariables.getNextTagId(), tag, null, null);
                     newTag.addGlobal();
                     newTag.writeDatabase();
                     task.addTag(newTag);
                 } else {
-                    if (!tags.contains(GlobalVariables.NAME_TO_TAG_MAP.get(tag))) {
+                    if (!taskTags.contains(GlobalVariables.NAME_TO_TAG_MAP.get(tag))) {
                         task.addTag(GlobalVariables.NAME_TO_TAG_MAP.get(tag));
                     }
                 }

@@ -296,8 +296,9 @@ public class Task extends DataType{
     public String getTagsAsString() {
         StringBuilder s = new StringBuilder();
         for (Tag tag : tags) {
-            s.append(tag.getName()).append(",");
+            s.append("#").append(tag.getName()).append(" ");
         }
+        if (!s.isEmpty()) s.deleteCharAt(s.length() - 1);
         return s.toString();
     }
 
