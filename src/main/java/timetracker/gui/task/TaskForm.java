@@ -6,6 +6,7 @@ import timetracker.data.TimeInterval;
 import timetracker.gui.MainForm;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class TaskForm extends JFrame {
     private JPanel panel1;
@@ -47,7 +48,7 @@ public class TaskForm extends JFrame {
         this.setContentPane(panel1);
         this.setMinimumSize(new java.awt.Dimension(800, 600));
         this.setSize(1000, 1000);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -72,6 +73,35 @@ public class TaskForm extends JFrame {
     }
 
     private void addListener() {
+
+        // Exit listener
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                ArrayList<Task> runningTasks = new ArrayList<>();
+                GlobalVariables.ID_TO_TASK_MAP.forEach((id, task) -> {
+                    if (task.isRunning()) {
+                        runningTasks.add(task);
+                    }
+                });
+
+                if (!runningTasks.isEmpty()) {
+                    int dialogResult = JOptionPane.showConfirmDialog(
+                            null,
+                            "There are still running tasks. Are you sure you want to exit? \r\n All running tasks will be stopped.",
+                            "Warning",
+                            JOptionPane.YES_NO_OPTION);
+                    if (dialogResult != JOptionPane.YES_OPTION) {
+                        return;
+                    } else {
+                        runningTasks.forEach(Task::stop);
+                    }
+                }
+
+                System.exit(0);
+            }
+        });
+
         // List selection listener
         taskList.getSelectionModel().addListSelectionListener(e -> {
             Task task = taskList.getSelectedValue();
