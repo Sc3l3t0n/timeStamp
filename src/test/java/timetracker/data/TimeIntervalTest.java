@@ -17,6 +17,7 @@ class TimeIntervalTest {
         assertTrue(timeInterval.getRunning());
         timeInterval.stop();
         assertFalse(timeInterval.getRunning());
+        timeInterval.removeDatabase();
     }
 
     @Test
@@ -33,17 +34,16 @@ class TimeIntervalTest {
     @Test
     void Database() {
         Task task = new Task(-1, "JUnitTest", null);
-        TimeInterval timeInterval = new TimeInterval(-2, task);
+        TimeInterval timeInterval = new TimeInterval(-5, task);
         DataReader dataReader = new DataReader();
         timeInterval.start();
         timeInterval.stop();
-        timeInterval.writeDatabase();
         assertTrue(dataReader.readAllTimeIntervals().contains(timeInterval));
         LocalDateTime now = LocalDateTime.now();
         timeInterval.setEndTime(now);
         timeInterval.updateDatabase();
         dataReader.readInTimeIntervalsToGlobal();
-        assertEquals(GlobalVariables.ID_TO_TIME_INTERVAL_MAP.get(-2).getEndTime(), now);
+        assertEquals(GlobalVariables.ID_TO_TIME_INTERVAL_MAP.get(-5).getEndTime(), now);
         timeInterval.removeDatabase();
         assertFalse(dataReader.readAllTimeIntervals().contains(timeInterval));
 
@@ -52,10 +52,11 @@ class TimeIntervalTest {
     @Test
     void getDuration() {
         Task task = new Task(-1, "JUnitTest", null);
-        TimeInterval timeInterval = new TimeInterval(-2, task);
+        TimeInterval timeInterval = new TimeInterval(-3, task);
         timeInterval.start();
         timeInterval.stop();
         assertNotNull(timeInterval.getDuration());
+        timeInterval.removeDatabase();
     }
 
     @Test
@@ -92,5 +93,6 @@ class TimeIntervalTest {
         assertTrue(timeInterval.getRunning());
         timeInterval.stop();
         assertFalse(timeInterval.getRunning());
+        timeInterval.removeDatabase();
     }
 }

@@ -34,7 +34,7 @@ class TagTest {
 
     @Test
     void Database() {
-        Tag tag = new Tag(-2, "JUnitTest", null, null);
+        Tag tag = new Tag(-1, "JUnitTest", null, null);
         DataReader dataReader = new DataReader();
         tag.writeDatabase();
         assertTrue(dataReader.readAllTags().contains(tag));
