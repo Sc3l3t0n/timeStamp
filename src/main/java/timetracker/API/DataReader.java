@@ -174,7 +174,7 @@ public class DataReader extends DatabaseConnection {
     public List<Task> readAllTasks() {
 
         ArrayList<Task> tasks = new ArrayList<>();
-        String sql = "SELECT task_id, name, project_id FROM Tasks ORDER BY task_id";
+        String sql = "SELECT task_id, name, project_id, tags FROM Tasks ORDER BY task_id";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -185,9 +185,20 @@ public class DataReader extends DatabaseConnection {
                 int taskID = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 int projectID = resultSet.getInt(3);
+                String tags = resultSet.getString(4);
                 Project project = projectID > -1 ? GlobalVariables.ID_TO_PROJECT_MAP.get(projectID) : null;
 
-                tasks.add(new Task(taskID, name, project));
+                Task task = new Task(taskID, name, project);
+
+                if (!tags.isEmpty()) {
+                    String[] tagIDs = tags.split(",");
+                    for (String tagID : tagIDs) {
+                        Tag tag = GlobalVariables.ID_TO_TAG_MAP.get(Integer.parseInt(tagID));
+                        task.addTag(tag);
+                    }
+                }
+
+                tasks.add(task);
             }
 
             resultSet.close();
