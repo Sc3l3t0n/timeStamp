@@ -293,7 +293,7 @@ public class Task extends DataType{
      *
      * @return A string representation of the task.
      */
-    public String getTagsToString() {
+    public String getTagsAsString() {
         StringBuilder s = new StringBuilder();
         for (Tag tag : tags) {
             s.append(tag.getName()).append(",");

@@ -35,7 +35,7 @@ public class EditTaskDialog extends JDialog {
         if (task.getProject() != null) {
             projectTextField.setText(task.getProject().getName());
         }
-        tagTextField.setText(task.getTagsToString());
+        tagTextField.setText(task.getTagsAsString());
 
         this.setSize(450, 300);
         this.setResizable(false);

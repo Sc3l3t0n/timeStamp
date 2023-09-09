@@ -179,7 +179,7 @@ public class TaskForm extends JFrame {
         long duration = task.getDuration().getSeconds();
         taskName.setText(task.getName());
         projectLabel.setText("Project: " + (task.getProject() == null ? "None" : task.getProject().getName()));
-        tagsLabel.setText("Tags: " + task.getTagsToString());
+        tagsLabel.setText("Tags: " + task.getTagsAsString());
         durationLabel.setText("Duration: " + String.format("%d:%02d:%02d", duration / 3600, (duration % 3600) / 60, (duration % 60)));
         timeIntervalsListModel.clear();
         stoppwatchLabel.setText("0:00:00");
