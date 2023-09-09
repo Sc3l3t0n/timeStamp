@@ -41,7 +41,6 @@ public class MainForm extends JFrame{
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                boolean running = false;
                 ArrayList<Task> runningTasks = new ArrayList<>();
                 GlobalVariables.ID_TO_TASK_MAP.forEach((id, task) -> {
                     if (task.isRunning()) {

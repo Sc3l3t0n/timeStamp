@@ -1,7 +1,6 @@
 package timetracker.gui;
 
 import timetracker.API.DataReader;
-import timetracker.data.GlobalVariables;
 
 public class Application{
 
