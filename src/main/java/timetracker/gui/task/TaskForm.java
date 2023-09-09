@@ -29,6 +29,8 @@ public class TaskForm extends JFrame {
     private JPanel stoppwatchPanel;
     private JButton deleteIntervalButton;
     private JButton editButton;
+    private JButton editIntervalButton;
+    private JButton createIntervalButton;
 
     DefaultListModel<Task> listModel = new DefaultListModel<>();
     DefaultListModel<TimeInterval> timeIntervalsListModel = new DefaultListModel<>();
@@ -44,6 +46,12 @@ public class TaskForm extends JFrame {
         addListener();
 
         taskView.setVisible(false);
+
+        // Disable buttons
+        deleteButton.setEnabled(false);
+        editIntervalButton.setEnabled(false);
+        deleteIntervalButton.setEnabled(false);
+
 
         this.setContentPane(panel1);
         this.setMinimumSize(new java.awt.Dimension(800, 600));
@@ -107,6 +115,16 @@ public class TaskForm extends JFrame {
             Task task = taskList.getSelectedValue();
             if (task != null) {
                 updateTaskView(task);
+                deleteButton.setEnabled(true);
+            }
+        });
+
+        // Time interval list selection listener
+        timeIntervalsList.getSelectionModel().addListSelectionListener(e -> {
+            TimeInterval timeInterval = timeIntervalsList.getSelectedValue();
+            if (timeInterval != null) {
+                editIntervalButton.setEnabled(true);
+                deleteIntervalButton.setEnabled(true);
             }
         });
 
@@ -187,6 +205,37 @@ public class TaskForm extends JFrame {
                 }
                 timeInterval.remove();
                 updateTimeIntervalList();
+            }
+        });
+
+        // Edit interval button listener
+        editIntervalButton.addActionListener(e -> {
+            TimeInterval timeInterval = timeIntervalsList.getSelectedValue();
+            if (timeInterval != null) {
+
+                EditTimeIntervalDialog editTimeIntervalDialog = new EditTimeIntervalDialog(timeInterval);
+                editTimeIntervalDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                        updateTimeIntervalList();
+                        updateTaskView(taskList.getSelectedValue());
+                    }
+                });
+            }
+        });
+
+        // Create interval button listener
+        createIntervalButton.addActionListener(e -> {
+            Task task = taskList.getSelectedValue();
+            if (task != null) {
+                CreateTimeIntervalDialog createTimeIntervalDialog = new CreateTimeIntervalDialog(task);
+                createTimeIntervalDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                        updateTimeIntervalList();
+                        updateTaskView(task);
+                    }
+                });
             }
         });
 
