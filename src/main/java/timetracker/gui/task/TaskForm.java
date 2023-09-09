@@ -27,6 +27,7 @@ public class TaskForm extends JFrame {
     private JLabel stoppwatchLabel;
     private JPanel stoppwatchPanel;
     private JButton deleteIntervalButton;
+    private JButton editButton;
 
     DefaultListModel<Task> listModel = new DefaultListModel<>();
     DefaultListModel<TimeInterval> timeIntervalsListModel = new DefaultListModel<>();
@@ -156,6 +157,20 @@ public class TaskForm extends JFrame {
                 }
                 timeInterval.remove();
                 updateTimeIntervalList();
+            }
+        });
+
+        // Edit button listener
+        editButton.addActionListener(e -> {
+            Task task = taskList.getSelectedValue();
+            if (task != null) {
+                EditTaskDialog editTaskDialog = new EditTaskDialog(task);
+                editTaskDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                        updateTaskView(task);
+                    }
+                });
             }
         });
     }
