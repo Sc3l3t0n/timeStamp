@@ -1,20 +1,22 @@
 package timetracker.gui;
 
 import timetracker.API.DataReader;
+import timetracker.data.GlobalVariables;
 
 public class Application{
 
     public Application() {
         collect();
         MainForm mainForm = new MainForm();
-        Runtime.getRuntime().addShutdownHook(new Thread()
-        {
-            @Override
-            public void run()
-            {
-                System.out.println("Shutdown hook ran!"); //TODO: Implement shutdown hook
-            }
-        });
+
+        // End all running tasks when the program is closed
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            GlobalVariables.ID_TO_TASK_MAP.forEach((id, task) -> {
+                if (task.isRunning()) {
+                    task.stop();
+                }
+            });
+        }));
     }
 
     private void collect() {
