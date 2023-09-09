@@ -183,6 +183,7 @@ public class Task extends DataType{
 
     /**
      * Sets the name of the task.
+     * Removes the old name from the {@link GlobalVariables} NAME_TO_TASK_MAP and adds the new name to the {@link GlobalVariables} NAME_TO_TASK_MAP.
      *
      * @param name The name of the task.
      */
