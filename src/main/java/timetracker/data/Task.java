@@ -3,8 +3,10 @@ package timetracker.data;
 import timetracker.API.DataRemover;
 import timetracker.API.DataWriter;
 
+import java.sql.Time;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -107,7 +109,8 @@ public class Task extends DataType{
     public void remove() {
         if (project != null) project.removeTask(this);
         for (TimeInterval timeInterval : timeIntervals) {
-            timeInterval.remove();
+            timeInterval.removeGlobal();
+            timeInterval.removeDatabase();
         }
         timeIntervals.clear();
         removeGlobal();

@@ -49,18 +49,11 @@ public class DataWriter extends DatabaseConnection{
             else
                 preparedStatement.setInt(4, -1);
 
-
-            int rowsInserted = preparedStatement.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Project added!");
-            } else {
-                System.out.println("Error adding the project!");
-            }
-
+            preparedStatement.executeUpdate();
             preparedStatement.close();
 
         } catch (SQLException e) {
-            System.err.println("Error when connecting to the database!");
+            System.err.println("Error adding the project!");
         }
         updateProjectID();
     }
@@ -134,17 +127,11 @@ public class DataWriter extends DatabaseConnection{
 
             preparedStatement.setString(4, tag.getColor().toString());
 
-            int rowsInserted = preparedStatement.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Tag added!");
-            } else {
-                System.out.println("Error adding the tag");
-            }
-
+            preparedStatement.executeUpdate();
             preparedStatement.close();
 
         } catch (SQLException e) {
-            System.err.println("Error when connecting to the database!");
+            System.err.println("Error adding the tag!");
             throw new RuntimeException(e);
         }
         updateTagID();
@@ -226,17 +213,11 @@ public class DataWriter extends DatabaseConnection{
             if (!sb.isEmpty()) sb.deleteCharAt(sb.length() - 1);
             preparedStatement.setString(4, sb.toString());
 
-            int rowsInserted = preparedStatement.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Task added!");
-            } else {
-                System.out.println("Error adding the task!");
-            }
-
+            preparedStatement.executeUpdate();
             preparedStatement.close();
 
         } catch (SQLException e) {
-            System.err.println("Error when connecting to the database!");
+            System.err.println("Error adding the task!");
         }
         updateTaskID();
     }
@@ -305,17 +286,11 @@ public class DataWriter extends DatabaseConnection{
             preparedStatement.setString(3, timeInterval.getStartTime().toString());
             preparedStatement.setString(4, timeInterval.getEndTime().toString());
 
-            int rowsInserted = preparedStatement.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Interval added!");
-            } else {
-                System.out.println("Error adding the interval");
-            }
-
+            preparedStatement.executeUpdate();
             preparedStatement.close();
 
         } catch (SQLException e) {
-            System.err.println("Error when connecting to the database!");
+            System.err.println("Error adding the interval!");
             throw new RuntimeException(e);
         }
         updateIntervalID();
