@@ -205,7 +205,7 @@ public class DataWriter extends DatabaseConnection{
     public void writeTask(Task task) {
 
         // SQL INSERT statement
-        String sql = "INSERT INTO tasks(task_id, name, project_id) VALUES(?,?,?)";
+        String sql = "INSERT INTO tasks(task_id, name, project_id, tags) VALUES(?,?,?,?)";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -218,6 +218,13 @@ public class DataWriter extends DatabaseConnection{
             else
                 preparedStatement.setInt(3, -1);
 
+            StringBuilder sb = new StringBuilder();
+            for (Tag tag : task.getTags()) {
+                sb.append(tag.getID());
+                sb.append(",");
+            }
+            if (!sb.isEmpty()) sb.deleteCharAt(sb.length() - 1);
+            preparedStatement.setString(4, sb.toString());
 
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0) {
@@ -354,7 +361,7 @@ public class DataWriter extends DatabaseConnection{
 
     /**
      * Updates every max IDs to the database.
-     *
+     * <p>
      * Performances issues may occur.
      * Use {@link DataWriter#updateProjectID()}, {@link DataWriter#updateTagID()},
      * {@link DataWriter#updateTaskID()} or {@link DataWriter#updateIntervalID()} instead for better performances.
