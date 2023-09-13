@@ -3,6 +3,7 @@ package timetracker.API;
 import timetracker.data.*;
 
 import java.awt.*;
+import java.io.File;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;

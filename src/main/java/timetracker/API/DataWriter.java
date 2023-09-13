@@ -24,6 +24,53 @@ public class DataWriter extends DatabaseConnection{
         super();
     }
 
+    // Create Database
+
+    public void initDatabase() {
+        System.out.println("Creating database...");
+        createTables();
+        createMaxIDs();
+    }
+
+    public void createTables() {
+        createTable("Projects", "project_id, name, description, parent_id");
+        createTable("Tags", "tag_id, name, parent_id, color");
+        createTable("Tasks", "task_id, name, project_id, tags");
+        createTable("TimeIntervals", "interval_id, task_id, start_time, end_time");
+        createTable("MaxIDs", "data_type, max_id");
+    }
+
+    public void createMaxIDs() {
+        createID("project_id", 0);
+        createID("tag_id", 0);
+        createID("task_id", 0);
+        createID("interval_id", 0);
+    }
+
+    public void createTable(String name, String columns) {
+        String sql = "CREATE TABLE IF NOT EXISTS " + name + "(" + columns + ");";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void createID(String name, int id) {
+        String sql = "INSERT INTO MaxIDs(data_type, max_id) VALUES(?,?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // Project
 
     /**
