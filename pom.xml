@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>timeStemp</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.1-Snapshot</version>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->

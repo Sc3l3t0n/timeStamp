@@ -1,4 +1,4 @@
-![Status](https://img.shields.io/badge/Status-early_development-yellow) ![Version](https://img.shields.io/badge/Version-0.3.0-orange) ![Testing](https://img.shields.io/badge/Testing-passing_5/5-darl_green) [![wakatime](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934.svg)](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934)
+![Status](https://img.shields.io/badge/Status-early_development-yellow) ![Version](https://img.shields.io/badge/Version-0.1-orange) ![Testing](https://img.shields.io/badge/Testing-passing_5/5-darl_green) [![wakatime](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934.svg)](https://wakatime.com/badge/user/70759c86-a6a9-488b-807d-a469ef46e73a/project/2bf56e63-bc92-407c-adde-0dbc63507934)
 # timeStamp - A Time Tracker App
 
 timeStamp is a time tracker app developed as a personal project to practice and enhance programming skills.
