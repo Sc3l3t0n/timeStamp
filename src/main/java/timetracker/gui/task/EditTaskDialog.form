@@ -105,7 +105,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value=""/>
+                  <text value="Not implemented yet"/>
                 </properties>
               </component>
             </children>

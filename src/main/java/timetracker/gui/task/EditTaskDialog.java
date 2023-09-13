@@ -43,6 +43,10 @@ public class EditTaskDialog extends JDialog {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
+        // Disable project field for now (not implemented yet)
+
+        projectTextField.setEnabled(false);
+
         buttonOK.addActionListener(e -> onOK());
 
         buttonCancel.addActionListener(e -> onCancel());

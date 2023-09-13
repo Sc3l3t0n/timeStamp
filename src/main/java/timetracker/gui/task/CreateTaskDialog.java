@@ -39,6 +39,10 @@ public class CreateTaskDialog extends JDialog {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
+        // Disable project field for now (not implemented yet)
+
+        projectTextField.setEnabled(false);
+
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
