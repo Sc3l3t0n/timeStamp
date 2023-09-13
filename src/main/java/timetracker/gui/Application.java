@@ -3,9 +3,10 @@ package timetracker.gui;
 import timetracker.API.DataReader;
 import timetracker.data.GlobalVariables;
 
-public class Application{
+public class Application implements Runnable{
 
-    public Application() {
+    @Override
+    public void run() {
         collect();
         MainForm mainForm = new MainForm();
 
