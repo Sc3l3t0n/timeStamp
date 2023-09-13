@@ -134,6 +134,7 @@ public class TaskForm extends JFrame {
             createTaskDialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                    if (createTaskDialog.getTask() == null) return;
                     listModel.add(listModel.getSize(), createTaskDialog.getTask());
                     taskList.setSelectedIndex(listModel.getSize() - 1);
                     updateTaskView(createTaskDialog.getTask());
