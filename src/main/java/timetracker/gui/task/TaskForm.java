@@ -135,6 +135,8 @@ public class TaskForm extends JFrame {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                     listModel.add(listModel.getSize(), createTaskDialog.getTask());
+                    taskList.setSelectedIndex(listModel.getSize() - 1);
+                    updateTaskView(createTaskDialog.getTask());
                 }
             });
         });
@@ -156,6 +158,7 @@ public class TaskForm extends JFrame {
                 task.removeDatabase();
                 listModel.removeElement(task);
                 taskView.setVisible(false);
+                deleteButton.setEnabled(false);
             }
         });
 
@@ -205,6 +208,10 @@ public class TaskForm extends JFrame {
                 }
                 timeInterval.remove();
                 updateTimeIntervalList();
+
+                // Disable buttons
+                editIntervalButton.setEnabled(false);
+                deleteIntervalButton.setEnabled(false);
             }
         });
 
