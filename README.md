@@ -10,6 +10,7 @@ The app allows users to efficiently track and manage their time for various acti
 - [Features](#features)
 - [Technologies](#technologies)
 - [Getting Started](#getting-started)
+- [System Requirements](#system-requirements)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
@@ -23,25 +24,31 @@ As a personal project, timeStamp serves as a sandbox for honing programming skil
 
 The timeStamp app is currently in the early stages of development and only has a few basic features implemented. These include:
 
-- new GUI with JavaFX 🎉
+## Version 0.1.0
+
+The 0.1.0 version of timeStamp includes the following features:
+
+- **New GUI with JavaSwing 🎉**
   - **Task Management:** Add, edit, and delete tasks to keep track of your activities.
   - **Working Stopwatch:** Start and stop a stopwatch to record the duration of your tasks.
-  - **Data Persistence:** Tasks, tags and time entries are saved in a database for future use.
+  - **Data Persistence:** Tasks, tags, and time entries are saved in a database for future use.
+
+## For the future
 
 These features are initially planned to be implemented in the course of development:
 
-- **Task Tracking:** Record tasks and activities, including start and end times, to keep track of how you spend your time.
-- **Project Management:** Organize tasks into projects, allowing you to categorize and manage related activities.
-- **Reports and Statistics:** Generate reports and view statistics to analyze time usage and identify patterns.
-- **User-Friendly Interface:** Enjoy a clean and intuitive user interface for a seamless experience.
+- [X] ~**Task Tracking:** Record tasks and activities, including start and end times, to keep track of how you spend your time.~
+- [ ] **Project Management:** Organize tasks into projects, allowing you to categorize and manage related activities.
+- [ ] **Reports and Statistics:** Generate reports and view statistics to analyze time usage and identify patterns.
+- [ ] **User-Friendly Interface:** Enjoy a clean and intuitive user interface for a seamless experience.
 
 Please note that the feature list may expand as the project evolves and more functionalities are implemented.
 
 # Technologies
 The timeStamp app is developed using Java, utilizing its robust object-oriented programming capabilities. It may incorporate additional libraries or frameworks to enhance functionality.
-For the user interface, JavaFX is used to create a clean and intuitive GUI.
+For the user interface, JavaSwing is used to create a clean and intuitive GUI.
 
-Its using [SQLite](https://www.sqlite.org/index.html) for saving data.
+It's using [SQLite](https://www.sqlite.org/index.html) for saving data.
 
 ## Readme Generation
 
@@ -50,13 +57,42 @@ This Readme was generated with the assistance of an AI language model. [OpenAI's
 # Getting Started
 As this project is primarily for personal practice, you can clone the repository and run the app locally on your machine. No special installation is required at this stage.
 
+If you want to get started with "timeStamp," follow these steps:
+
+1. **Download the App:**
+   - You can download the app in one of two formats on [releases](https://github.com/Sc3l3t0n/timeStamp/releases):
+     - `timeStamp.jar` for Java users.
+     - `timeStamp.exe` for Windows users (no additional requirements).
+
+2. **Check System Requirements:**
+   - For running the `.jar` file, ensure you have Java Development Kit (JDK) version 17 or higher installed on your system.
+   - If you're using the `.exe` file on Windows, no JDK is required.
+
+3. **Run the App:**
+   - Double-click the `.jar` or `.exe` file to launch "timeStamp."
+
+4. **Start Tracking Time:**
+   - Begin tracking your time by adding tasks and projects within the app.
+
+## Warning for Windows Users and Browser Users
+
+- **Browser Users:** When downloading the `.exe` file of "timeStamp" from your web browser, you might receive a warning about the file's source or potential risks. The file is safe. Please select the option to accept or run the file, depending on your browser's warning message. 
+- **Windows Users:** If you're running the `.exe` version of "timeStamp" on Windows, you may encounter a warning message from Windows Defender or your antivirus software. This is a common occurrence for unsigned executable files. You can safely ignore this warning and proceed with running the application. "timeStamp" is a legitimate and safe application.
+
+These warnings are typical for unsigned or downloaded files but do not indicate any security threats associated with "timeStamp."
+
+# System Requirements
+
+- **Java Development Kit (JDK):** Required if you're running the `.jar` file. Ensure you have JDK version 17 or higher installed.
+- **Operating System:** For Windows users running the `.exe` file, no JDK is required. However, ensure you're using a compatible Windows operating system.
+
+Please make sure to download the appropriate file based on your system and follow the instructions to start using "timeStamp."
+
 # Usage
-Clone the repository to your local machine.
-Open the project in your preferred Java development environment.
-Compile and run the application.
-Start tracking your time by adding tasks and projects.
-Contributing
-Contributions to timeStamp are not expected, as this project is primarily for personal practice and development. However, if you find any bugs or have suggestions, feel free to raise an issue in the repository.
+1. Clone the repository to your local machine.
+1. Open the project in your preferred Java development environment.
+1. Compile and run the application.
+1. Start tracking your time by adding tasks and projects.
 
 # Contributing
 
