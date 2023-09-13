@@ -1,5 +1,6 @@
 package timetracker.API;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -27,14 +28,28 @@ public abstract class DatabaseConnection {
     public DatabaseConnection() {
 
         try{
-
             Class.forName("org.sqlite.JDBC");
-            this.connection = DriverManager.getConnection("jdbc:sqlite:database.sqlite");
+
+            String os = System.getProperty("os.name").toLowerCase();
+            String path = System.getProperty("user.home");
+
+            if (os.contains("win")) {
+                path += "\\AppData\\Roaming\\timeStamp\\database.sqlite";
+
+            } else if (os.contains("mac")) {
+                path += "/Library/Application Support/timeStamp/database.sqlite";
+            } else if (os.contains("nix") || os.contains("nux") || os.contains("aix")) {
+                path += "/.config/timeStamp/database.sqlite";
+            } else {
+                throw new RuntimeException("Could not check for os.");
+            }
+
+            this.connection = DriverManager.getConnection("jdbc:sqlite:" + path);
 
             System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(this.toString() + " could not connect to the database!");
+            throw new RuntimeException(this + " could not connect to the database!");
         }
     }
 

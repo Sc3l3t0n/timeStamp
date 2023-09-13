@@ -98,13 +98,15 @@ public class CreateTaskDialog extends JDialog {
             JOptionPane.showMessageDialog(this, "Please enter a name for the task.");
             return;
         }
-        if (!projectTextField.getText().isEmpty()) {
-            if (!GlobalVariables.NAME_TO_PROJECT_MAP.containsKey(projectTextField.getText())) {
-                JOptionPane.showMessageDialog(this, "Please enter a valid project.");
-                return;
-            }
-            project = GlobalVariables.NAME_TO_PROJECT_MAP.get(projectTextField.getText());
-        }
+
+        // Disable project field for now (not implemented yet)
+        //if (!projectTextField.getText().isEmpty()) {
+        //    if (!GlobalVariables.NAME_TO_PROJECT_MAP.containsKey(projectTextField.getText())) {
+        //        JOptionPane.showMessageDialog(this, "Please enter a valid project.");
+        //        return;
+        //    }
+        //    project = GlobalVariables.NAME_TO_PROJECT_MAP.get(projectTextField.getText());
+        //}
 
         task = new Task(GlobalVariables.getNextTaskId(), name, project);
 
