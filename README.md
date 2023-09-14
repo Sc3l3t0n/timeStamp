@@ -60,15 +60,18 @@ As this project is primarily for personal practice, you can clone the repository
 If you want to get started with "timeStamp," follow these steps:
 
 1. **Download the App:**
-   - You can download the app in one of two formats on [releases](https://github.com/Sc3l3t0n/timeStamp/releases):
+   - You can download the app in one of three formats on [releases](https://github.com/Sc3l3t0n/timeStamp/releases):
      - `timeStamp.jar` for Java users.
      - `timeStamp.exe` for Windows users.
+     - `timeStamp_windows_vX.X.X.zip` for Windows users (includes JRE)
 
 2. **Check System Requirements:**
    - For running the `.jar` or `.exe` file, ensure you have Java Development Kit (JDK) version 17 or higher installed on your system.
+   - Use the `.zip` file on Windows to avoid the installation of a JDK to execute `.exe`
 
 3. **Run the App:**
    - Double-click the `.jar` or `.exe` file to launch "timeStamp."
+   - `.zip` unzip the folder and read howto.txt
 
 4. **Start Tracking Time:**
    - Begin tracking your time by adding tasks and projects within the app.
@@ -83,6 +86,7 @@ These warnings are typical for unsigned or downloaded files but do not indicate 
 # System Requirements
 
 - **Java Development Kit (JDK):** Required if you're running the `.jar` file. Ensure you have JDK version 17 or higher installed.
+  - embedded in the `.zip` file
 - **Operating System:** For Windows users running the `.exe` file, a JDK Version 17 or higher is also required. However, ensure you're using a compatible Windows operating system.
 
 Please make sure to download the appropriate file based on your system and follow the instructions to start using "timeStamp."
